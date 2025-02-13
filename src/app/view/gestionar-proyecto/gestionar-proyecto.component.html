@@ -1,0 +1,20 @@
+<div class="main-container" [ngClass]="{'with-sidebar': !isSidebarReduced, 'without-sidebar': isSidebarReduced}">
+    <header class="main-header">
+      <img src="https://cdn-icons-png.freepik.com/256/943/943040.png?semt=ais_hybrid" class="img" alt=""> Gestionar Proyecto 
+          <button class="btn btn-danger close-btn" (click)="Salir()">X</button>
+    </header>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Inscripción</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Evaluación</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Seguimiento</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+</div>

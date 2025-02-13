@@ -1,12 +1,88 @@
-<div class="main-container" [ngClass]="{'with-sidebar': !isSidebarReduced, 'without-sidebar': isSidebarReduced}">
-    <header class="main-header">
-      <img src="https://cdn-icons-png.freepik.com/256/943/943040.png?semt=ais_hybrid" class="img" alt=""> Inscripción Grupo  
-          <button class="btn btn-danger close-btn" (click)="Salir()">X</button>
-    </header>
-    <div class="mb-3 row g-0">
-        <label for="input" class="col-sm-2 col-form-label">Nombre del grupo de extension: <span class="aste">(*)</span></label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="input">
-        </div>
-      </div>
+<div
+  class="main-container"
+  [ngClass]="{
+    'with-sidebar': !isSidebarReduced,
+    'without-sidebar': isSidebarReduced
+  }"
+>
+  <header class="main-header">
+    <img
+      src="https://cdn-icons-png.freepik.com/256/943/943040.png?semt=ais_hybrid"
+      class="img"
+      alt=""
+    />
+    Inscripción Grupo
+    <button class="btn btn-danger close-btn" (click)="Salir()">X</button>
+  </header>
+  <div class="mb-3 row g-0">
+    <label for="input" class="col-sm-2 col-form-label"
+      >Nombre del grupo de extension: <span class="aste">(*)</span></label
+    >
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="input" />
+    </div>
+  </div>
+  <div class="mb-3 row g-0">
+    <label for="modalidad" class="col-sm-2 col-form-label"
+      >Modalidad: <span class="aste">(*)</span></label
+    >
+    <div class="col-sm-10">
+      <select
+        class="form-select"
+        id="modalidad"
+        aria-label="Default select example"
+      >
+        <option selected>Selecciona</option>
+        <option value="1">
+          Actividades Artísticas, Culturales y Recreativas
+        </option>
+        <option value="2">Proyectos de Extensión Solidaria</option>
+        <option value="3">Educación Continua</option>
+      </select>
+    </div>
+  </div>
+  <div class="labelintegrantes">
+    <label for="integrantes" class="integrand"
+      ><i class="fas fa-users"></i>Integrantes</label
+    >
+  </div>
+  <form class="d-flex gap-2" role="search">
+    <input
+      class="form-control me-2"
+      type="search"
+      placeholder="Escriba el nombre del Integrante de su equipo"
+      aria-label="Search"
+    />
+    <button class="btn btn-outline-success" type="submit">
+      <i class="fa fa-search"></i> Buscar Integrante
+    </button>
+    <button type="button" class="btn btn-primary btn-sm"><img width="15" height="15" src="https://img.icons8.com/stickers/100/user-group-woman-woman.png" alt="user-group-woman-woman"/>Agregar Integrante Externo</button>
+  </form>
+  <div class="container">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">N° de Cédula</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Vinculación</th>
+          <th scope="col">Programa</th>
+          <th> Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1006507972</td>
+          <td>Edinson Esteban</td>
+          <td>Ramos Trujillo</td>
+          <td>Estudiante</td>
+          <td>Ingeniería</td>
+          <button type="button" class="btn btn-secondary Eliminar"><img width="15" height="15" src="https://img.icons8.com/stickers/100/user-group-woman-woman.png" alt="user-group-woman-woman"/>Eliminar Integrante</button>
+        </tr>
+       
+      </tbody>
+  </table>
+  
+  </div>
+   
 </div>

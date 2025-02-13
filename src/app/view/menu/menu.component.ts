@@ -23,7 +23,6 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  // Escucha el cambio de tamaño de ventana
   @HostListener('window:resize')
   onResize() {
     this.updateSidebarVisibility();

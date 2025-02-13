@@ -19,6 +19,18 @@ export class VerConvocatoriasComponent implements OnInit {
       estado: 'Activa'
     },
     {
+      titulo: 'V CONVOCATORIA DE PROYECTOS DE EXTENSIÓN Y PROYECCIÓN SOCIAL',
+      fechaDesde: '09-08-2024',
+      fechaHasta: '09-11-2025',
+      estado: 'Activa'
+    },
+    {
+      titulo: 'V CONVOCATORIA DE PROYECTOS DE EXTENSIÓN Y PROYECCIÓN SOCIAL',
+      fechaDesde: '09-08-2024',
+      fechaHasta: '09-11-2025',
+      estado: 'Activa'
+    },
+    {
       titulo: 'VI CONVOCATORIA DE PROYECTOS DE EXTENSIÓN Y PROYECCIÓN SOCIAL',
       fechaDesde: '09-08-2024',
       fechaHasta: '09-11-2024',

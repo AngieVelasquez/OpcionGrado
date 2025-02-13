@@ -63,9 +63,95 @@
     margin-top: 0;
     border-radius: 0;
     height: 25px;
-    padding: 2px 5px; 
+    padding: 2px 2px; 
     font-family: Arial, sans-serif;
     font-size:13px;
   }
+  .select .lineas{
+    font-size: 13px;
+    padding: 10px;
+  }
+  .select {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%; 
+    padding: 5px;
+  }
+  .form-select{
+    font-size: 13px;
+    padding: 5px;
+    gap: 0px;
+   }
   
-   
+   .col-form-label {
+    font-size: 13px;
+    margin-left: 0;
+    padding: 0 5px; 
+  }
+  .labelintegrantes{
+    background-color: #f7f5f5;
+  }
+  .integrand{
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    padding: 5px;
+  }
+  .fa-users{
+    padding: 5px;
+  }
+  .me-2{
+    width: 50%;
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    margin-left: 18%;
+    margin-top: 10px;
+  }
+  .btn-outline-success{
+    height: 25px;
+    align-items: center;
+    text-align: center;
+    font-size:10px;
+    background-color: rgb(246, 246, 247);
+    color: #005A7E;
+    border: none;
+    font-family: Arial, sans-serif;
+    margin-top: 8px;
+  }
+  .btn-primary{
+    padding: 2px;
+    font-size: 10px;
+    width: auto;
+    height:23px;
+    margin-top: 10px;
+  }
+  .table-bordered {
+    margin-left: 50px;
+    text-align: center;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    max-height: 220px;  
+    height: 80px;
+    overflow: auto; 
+    width: 89%;
+    border: 1px solid #ddd; 
+  }
+  .Eliminar{
+    font-size: 8px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 0;
+    padding: 4px;
+    background-color: #f7f5f5;
+    color: #005A7E;
+    border: none;
+    margin-top: 5px;
+    text-align: center;
+  }
+  .Eliminar:hover{
+    background-color: #005A7E;
+    color: white;
+  }

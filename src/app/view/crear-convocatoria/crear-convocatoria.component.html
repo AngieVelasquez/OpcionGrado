@@ -40,8 +40,11 @@
 
       <div *ngIf="!isCollapsed" class="border rounded mt-2 p-3 table-container expanded">
         <div class="d-flex justify-content-end mb-3">
-          <button type="button" class="btn btn-success"  (click)="openModalObject()">Objetivos</button>
-          <!-- Modal -->
+          <button type="button" class="btn btn-success" (click)="openModalObject()" data-bs-toggle="tooltip" 
+          title="Aqui podra crear o visulizar objetivos">
+            Objetivos
+        </button>
+            <!-- Modal -->
         <div class="modal fade" id="CrearObjetivos" tabindex="1" aria-labelledby="modalCrearLineaLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -195,10 +198,45 @@
     </div>
   </div>
   <div class="botonesfinales">
-    <button type="button" class="btn btn-success">Volver</button>
-    <button type="button" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-success" (click)="openModalVolver()">Volver</button>
+    <button type="button" class="btn btn-primary" (click)="openModalGuardar()">Guardar</button>
   </div>
-
+<!-- Modal de confirmación para salir -->
+<div class="modal fade" id="modalConfirmarSalida" tabindex="-1" aria-labelledby="modalConfirmarSalidaLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" style=" font-size: 13px;">  
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalConfirmarSalidaLabel">Confirmación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Seguro que desea volver?
+      </div>
+      <div class="modal-footer" >
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="guardarCambios()" style="background-color: #198754;">Acepto</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal de confirmación para guardar cambios -->
+<div class="modal fade" id="modalConfirmarGuardado" tabindex="-1" aria-labelledby="modalConfirmarGuardadoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" style=" font-size: 13px;">  
+      <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalConfirmarGuardadoLabel">Confirmación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Desea guardar los cambios?
+      </div>
+      <div class="modal-footer" >
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="guardarCambios()" style="background-color: #198754;">Acepto</button>
+      </div>
+    </div>
+  </div>
+</div>
   </div>
 
   </div>

@@ -12,6 +12,7 @@ export class CrearConvocatoriaComponent implements OnInit {
   isCollapsed = true;
   fechaInicio: string = '';
   fechaFin: string = '';
+  
 
   constructor(private menuService: MenuService) {
     const hoy = new Date().toISOString().split('T')[0]; 
@@ -30,6 +31,25 @@ export class CrearConvocatoriaComponent implements OnInit {
   }
   openModal() {
     const modalElement = document.getElementById('modalCrearLinea');
+
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement, {
+        keyboard: false 
+      });
+      modal.show();
+    } 
+  }
+  openModalVolver(){
+    const modalElement = document.getElementById('modalConfirmarSalida');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement, {
+        keyboard: false 
+      });
+      modal.show();
+    }
+  }
+  openModalGuardar(){
+    const modalElement = document.getElementById('modalConfirmarGuardado');
     if (modalElement) {
       const modal = new bootstrap.Modal(modalElement, {
         keyboard: false 
@@ -64,4 +84,8 @@ export class CrearConvocatoriaComponent implements OnInit {
   Salir() {
     window.location.href = '/principal';
   }
+  guardarCambios(){
+    
+  }
+ 
 }

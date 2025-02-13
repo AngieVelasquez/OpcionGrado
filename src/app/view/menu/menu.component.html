@@ -29,7 +29,7 @@
     <span class="bordeTexto">Información</span>
   </div>
   <h1><i class="fa-solid fa-bars"></i> Menú Principal</h1>
-  <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+  <div class="btn-group-vertical menu" role="group" aria-label="Vertical button group">
     <div class="btn-group" role="group">
       <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" (click)="toggleAccordion('convocatorias')" aria-expanded="false">
         Convocatorias
@@ -45,11 +45,12 @@
       </button>
       <ul *ngIf="isProyectosOpen">
         <li><a class="dropdown-item" [routerLink]="['inscripcion-grupo']">Inscripción de Grupo</a></li>
-        <li><a class="dropdown-item" href="#">Gestionar Proyecto</a></li>
+        <li><a class="dropdown-item" [routerLink]="['']">Inscripciones</a></li>
+        <li><a class="dropdown-item" [routerLink]="['gestionar-proyecto']">Gestionar Proyecto</a></li>
       </ul>
     </div>
-    <button type="button" id="Largo" class="btn btn-primary">Indicadores de Cobertura</button>
-    <button type="button" class="btn btn-primary">Usuarios</button>
+    <button type="button" id="Largo" class="btn btn-primary extra-btn">Indicadores de Cobertura</button>
+    <button type="button" class="btn btn-primary extra-btn">Usuarios</button>
   </div>
   <div id="informacionUniversidad">
     <span>© 2024 <a href="https://www.uniamazonia.edu.co/inicgit initio/index.php/es/">Universidad de la Amazonia</a> - Todos los derechos reservados</span>

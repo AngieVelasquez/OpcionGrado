@@ -10,6 +10,7 @@ import { CrearConvocatoriaComponent } from './view/crear-convocatoria/crear-conv
 import { VerConvocatoriasComponent } from './view/ver-convocatorias/ver-convocatorias.component';
 import { InscripcionGrupoComponent } from './view/inscripcion-grupo/inscripcion-grupo.component';
 import { VerConvocatoriaComponent } from './view/ver-convocatoria/ver-convocatoria.component';
+import { GestionarProyectoComponent } from './view/gestionar-proyecto/gestionar-proyecto.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { VerConvocatoriaComponent } from './view/ver-convocatoria/ver-convocator
     CrearConvocatoriaComponent,
     VerConvocatoriasComponent,
     InscripcionGrupoComponent,
-    VerConvocatoriaComponent
+    VerConvocatoriaComponent,
+    GestionarProyectoComponent
   ],
   imports: [
     BrowserModule,
