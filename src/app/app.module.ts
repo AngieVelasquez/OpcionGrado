@@ -11,6 +11,8 @@ import { VerConvocatoriasComponent } from './view/ver-convocatorias/ver-convocat
 import { InscripcionGrupoComponent } from './view/inscripcion-grupo/inscripcion-grupo.component';
 import { VerConvocatoriaComponent } from './view/ver-convocatoria/ver-convocatoria.component';
 import { GestionarProyectoComponent } from './view/gestionar-proyecto/gestionar-proyecto.component';
+import { InscripcionesGruposComponent } from './view/inscripciones-grupos/inscripciones-grupos.component';
+import { InscripcionProyectoComponent } from './view/inscripcion-proyecto/inscripcion-proyecto.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { GestionarProyectoComponent } from './view/gestionar-proyecto/gestionar-
     VerConvocatoriasComponent,
     InscripcionGrupoComponent,
     VerConvocatoriaComponent,
-    GestionarProyectoComponent
+    GestionarProyectoComponent,
+    InscripcionesGruposComponent,
+    InscripcionProyectoComponent
   ],
   imports: [
     BrowserModule,

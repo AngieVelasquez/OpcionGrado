@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from 'src/app/service/services/menu.service';
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-inscripcion-grupo',
@@ -17,7 +18,45 @@ export class InscripcionGrupoComponent implements OnInit{
       this.isSidebarReduced = isReduced;
     });
   }
+  openModalVolver(){
+    const modalElement = document.getElementById('modalConfirmarSalida');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement, {
+        keyboard: false 
+      });
+      modal.show();
+    }
+  }
+  openModalGuardar(){
+    const modalElement = document.getElementById('modalConfirmarGuardado');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement, {
+        keyboard: false 
+      });
+      modal.show();
+    }
+  }
+
+  guardarCambios(){
+    
+  }
+ 
   Salir() {
     window.location.href = '/principal';
   }
+  selectedOption: string = "";
+  selectedOptions: string[] = [];
+
+  updateBox() {
+    if (this.selectedOption && !this.selectedOptions.includes(this.selectedOption)) {
+      this.selectedOptions.push(this.selectedOption);
+    }
+    this.selectedOption = ""; 
+  }
+
+  removeOption(index: number) {
+    this.selectedOptions.splice(index, 1);
+  }
+
+  
 }

@@ -51,13 +51,9 @@
   }
   
   .mb-3 {
-    padding: 4px 5px; 
     margin-bottom: 0;
     font-size: 13px;
-  }
-  
-  .mb-3 {
-    margin-bottom: 0;
+    padding: 3px;
   }
   .form-control {
     margin-top: 0;
@@ -73,19 +69,26 @@
   }
   .select {
     display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    width: 100%; 
+    justify-content: flex-start; 
+    align-items: center;
+    width: 100%;
     padding: 5px;
+    font-family: Arial, sans-serif;
+    font-size:11px;
+
+  }
+  
+  .selectlineas {
+    width: 60%; 
+    margin-left: 55px; 
   }
   .form-select{
-    font-size: 13px;
+    font-size: 10px;
     padding: 5px;
-    gap: 0px;
    }
   
    .col-form-label {
-    font-size: 13px;
+    font-size: 10px;
     margin-left: 0;
     padding: 0 5px; 
   }
@@ -93,7 +96,7 @@
     background-color: #f7f5f5;
   }
   .integrand{
-    font-size: 13px;
+    font-size: 10px;
     font-family: Arial, sans-serif;
     padding: 5px;
   }
@@ -105,7 +108,7 @@
     align-items: center;
     border-radius: 8px;
     padding: 10px;
-    font-size: 13px;
+    font-size: 10px;
     font-family: Arial, sans-serif;
     margin-left: 18%;
     margin-top: 10px;
@@ -128,30 +131,144 @@
     height:23px;
     margin-top: 10px;
   }
+  .container{
+    margin-top: 10px;
+    width: 80%;
+    height: 130px;
+    max-height: 170px;
+    overflow: auto;
+    margin-bottom: 0;
+  }
   .table-bordered {
     margin-left: 50px;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 5px;
     font-family: Arial, sans-serif;
-    font-size: 11px;
+    font-size: 10px;
+    height: 200px;
     max-height: 220px;  
     height: 80px;
     overflow: auto; 
     width: 89%;
     border: 1px solid #ddd; 
+    text-align: center;
+    align-items: center;
   }
+.table-bordered th, .table-bordered td{
+  font-size: 10px;  
+  padding: 5px;     
+  text-align: center;
+}
   .Eliminar{
-    font-size: 8px;
+    margin-top: 5px;
+    font-size: 7px;
     font-family: Arial, sans-serif;
-    margin-bottom: 0;
-    padding: 4px;
+    padding: 1px;
     background-color: #f7f5f5;
     color: #005A7E;
     border: none;
-    margin-top: 5px;
     text-align: center;
   }
   .Eliminar:hover{
     background-color: #005A7E;
     color: white;
   }
+  .vinculacion{
+    font-size: 8px;
+    font-family: Arial, sans-serif;
+    color: red;
+    margin-left: 50px;
+    margin-top: -10px;
+  }
+  .agregado{
+    color: green;
+    font-size: 8px;
+    font-family: Arial, sans-serif;
+  }
+  textarea {
+    margin-top: -15px; 
+    margin-left: 70px;
+    width: 87%;
+    max-height: 290px; 
+    padding: 4px; 
+  }
+  #input1 {
+    margin-left: 5px;
+  }
+  .input1{
+    margin-left: 7px;
+  }
+
+  .custom-input {
+    height: 50px; 
+    font-size: 10px; 
+    width: 80%;
+    background-color: rgb(249, 249, 249);
+  }
+.input2{
+  margin-left: -45px;
+}
+.botonesfinales {
+  margin-top: -10px;
+    display: flex;
+    justify-content: center; 
+    gap: 3px; 
+    align-items: end; 
+    padding: 7px;
+}
+
+.botonesfinales button {
+  width: 80px; 
+  height: 30px;
+  font-size: 11px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  border-radius: 5px; 
+}
+.selected-item {
+  background-color: #f1f1f1;
+  padding: 5px 25px 5px 8px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(50% - 10px);
+  box-sizing: border-box;
+  position: relative;
+  width: auto;
+}
+
+.close-btn {
+  margin-left: 5px;
+  border: none;
+  background: none;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 5px;
+  transform: translateY(-50%);
+}
+.custom-box {
+  width: 270px;
+  height: 50px;
+  max-height: 200px;
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow-y: auto; 
+  overflow-x: hidden;
+  position: absolute;
+  top: 22%;
+  left: 75%;
+  font-size: 10px;
+  font-family: Arial, sans-serif;
+  gap: 5px;
+}
+.lineas{
+  font-family: Arial, sans-serif;
+  font-size:10px !important; 
+}

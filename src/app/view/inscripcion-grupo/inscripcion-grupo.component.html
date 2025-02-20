@@ -41,6 +41,24 @@
       </select>
     </div>
   </div>
+  <div class="select">
+    <label for="input1" class="lineas">Areas de Trabajo </label>
+    <select class="form-select selectlineas" [(ngModel)]="selectedOption" (change)="updateBox()">
+      <option selected disabled placeholder="Selecciona">Selecciona</option>
+      
+      <option value="Innovación Educativa">Innovación Educativa</option>
+      <option value="Desarrollo Sostenible">Desarrollo Sostenible</option>
+      <option value="Tecnología y Sociedad">Tecnología y Sociedad</option>
+      <option value="Tecnold">Tecnolog</option>
+    </select>
+    <div class="custom-box cuadroLineas">
+      <span *ngFor="let option of selectedOptions; let i = index" class="selected-item">
+        {{ option }} 
+        <button type="button" class="close-btn" (click)="removeOption(i)">X</button>
+      </span>
+    </div>
+  </div>
+  
   <div class="labelintegrantes">
     <label for="integrantes" class="integrand"
       ><i class="fas fa-users"></i>Integrantes</label
@@ -79,10 +97,79 @@
           <td>Ingeniería</td>
           <button type="button" class="btn btn-secondary Eliminar"><img width="15" height="15" src="https://img.icons8.com/stickers/100/user-group-woman-woman.png" alt="user-group-woman-woman"/>Eliminar Integrante</button>
         </tr>
-       
+        <tr>
+          <td>1006507972</td>
+          <td>Edinson Esteban</td>
+          <td>Ramos Trujillo</td>
+          <td>Estudiante</td>
+          <td>Ingeniería</td>
+          <button type="button" class="btn btn-secondary Eliminar"><img width="15" height="15" src="https://img.icons8.com/stickers/100/user-group-woman-woman.png" alt="user-group-woman-woman"/>Eliminar Integrante</button>
+        </tr>
+        
       </tbody>
   </table>
-  
+  <h3 class="vinculacion">
+    *Docente, <span class="agregado">Estudiante</span>, Administrativo, Graduado
+  </h3>
   </div>
-   
+  
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label col-form-label" >Objetivos:</label>
+    <textarea class="form-control textarea" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <div class="mb-3 row d-flex align-items-center">
+    <div class="col-auto">
+      <label for="input1" class="col-form-label input1" >Facultad (es):</label>
+    </div>
+    <div class="col-sm-5">
+      <input type="text" class="form-control custom-input" id="input1" readonly  value="Facultad de Ingeniería">
+    </div>
+
+    <div class="col-auto">
+      <label for="input2" class="col-form-label input2">Programas: </label>
+    </div>
+    <div class="col-sm-5">
+      <input type="text" class="form-control custom-input" id="input2" readonly value="Sistemas, Agrocologica">
+    </div>
+  </div>
+  <div class="botonesfinales">
+    <button type="button" class="btn btn-success" (click)="openModalVolver()">Volver</button>
+    <button type="button" class="btn btn-primary" (click)="openModalGuardar()">Guardar</button>
+  </div>
+<!-- Modal de confirmación para salir -->
+<div class="modal fade" id="modalConfirmarSalida" tabindex="-1" aria-labelledby="modalConfirmarSalidaLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" style=" font-size: 13px;">  
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalConfirmarSalidaLabel">Confirmación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Seguro que desea volver?
+      </div>
+      <div class="modal-footer" >
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="guardarCambios()" style="background-color: #198754;">Acepto</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal de confirmación para guardar cambios -->
+<div class="modal fade" id="modalConfirmarGuardado" tabindex="-1" aria-labelledby="modalConfirmarGuardadoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" style=" font-size: 13px;">  
+      <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalConfirmarGuardadoLabel">Confirmación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Desea guardar los cambios?
+      </div>
+      <div class="modal-footer" >
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="guardarCambios()" style="background-color: #2D65F5;">Acepto</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>

@@ -44,3 +44,86 @@
   justify-content: center;
   padding: 0;
 }
+.card-title{
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  margin-top: 10px;
+}
+.vigencia{
+  text-align: center;
+  font-size: 11px;
+  font-family: Arial, sans-serif;
+  color: rgb(156, 156, 156);
+  margin-top: 5px;
+}
+.description{
+  margin-top: 20px;
+  width: 90%;
+}
+.descripcion, .Lineasdeprofundizacion{
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+.descipcionparrafo{
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+.contenedortable{
+  width: 95%;
+  height: 130px;
+  max-height: 220px;
+  overflow: auto;
+  padding: 10px;
+}
+.table th, .table td{
+  font-size: 10px;  
+  padding: 5px;     
+}
+.referencia{
+  text-align: center;
+  font-size: 13px;
+}
+.numero{
+  width: 40px;
+  text-align: center;
+  background-color:#2D65F5;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+.number1{
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+}
+.resolucion, a{
+  text-decoration: none;
+  text-align: center;
+  width: 150px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+.table-bordered{
+  width: 92%;
+  align-items: center;
+  margin-left: 4%;
+}
+.botonesfinales {
+    margin-top: 75px;
+    display: flex;
+    justify-content: center; 
+    gap: 10px; 
+    align-items: end; 
+    padding: 10px;
+}
+
+.botonesfinales button {
+  width: 100px; 
+  height: 30px;
+  font-size: 11px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  border-radius: 5px; 
+}

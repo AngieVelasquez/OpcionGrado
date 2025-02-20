@@ -6,6 +6,7 @@ import { VerConvocatoriaComponent } from './view/ver-convocatoria/ver-convocator
 import { PrincipalComponent } from './view/principal/principal.component';
 import { InscripcionGrupoComponent } from './view/inscripcion-grupo/inscripcion-grupo.component';
 import { GestionarProyectoComponent } from './view/gestionar-proyecto/gestionar-proyecto.component';
+import { InscripcionesGruposComponent } from './view/inscripciones-grupos/inscripciones-grupos.component';
 
 const routes: Routes = [
   { path : '', redirectTo:'/principal', pathMatch: 'full'},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path : 'ver-convocatoria', component: VerConvocatoriaComponent },
   { path : 'inscripcion-grupo', component: InscripcionGrupoComponent},
   { path : 'gestionar-proyecto', component: GestionarProyectoComponent},
+  { path : 'inscripciones-grupos', component: InscripcionesGruposComponent},
   { path: 'principal', component: PrincipalComponent}
 ];
 
