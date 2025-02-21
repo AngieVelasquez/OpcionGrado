@@ -48,5 +48,14 @@ rechazarProyecto(proyecto: any) {
   toggleAcordeon() {
     this.isOpen = !this.isOpen;
   }
+   mostrartexto: string = ""
+
+   Estado(id: string){
+    if(id == 'aceptado'){
+    this.mostrartexto = "Grupo aceptado"
+    }else{
+    this.mostrartexto = "Grupo rechazado"
+    }
+  }
   
 }

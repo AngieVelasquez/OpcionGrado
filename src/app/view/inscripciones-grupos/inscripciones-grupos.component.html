@@ -116,8 +116,8 @@
                   </div>
                   
                 <div class="mt-auto text-end">
-                    <button class="btn btn-success me-2" >Aceptar</button>
-                    <button class="btn btn-danger" >Rechazar</button>
+                    <button class="btn btn-success me-2" (click)="Estado('aceptado')" >Aceptar</button>
+                    <button class="btn btn-danger" (click)="Estado('Rechazado')">Rechazar</button>
                 </div>
             </div>
 
@@ -129,7 +129,7 @@
                 <input type="email" value="usuario@dominio.edu.co" readonly>
             
                 <label class="form-label">Asunto:</label>
-                <input type="text" placeholder="Escribe el asunto...">
+                <input type="text" value="{{mostrartexto}}" placeholder="Escribe el asunto...">
             
                 <label class="form-label">Mensaje:</label>
                 <textarea class="area" rows="4" placeholder="Escriba su mensaje..."></textarea>
