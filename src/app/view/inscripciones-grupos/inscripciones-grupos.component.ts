@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuService } from 'src/app/service/services/menu.service';
+import { MenuService } from 'src/app/service/menu.service';
 
 @Component({
   selector: 'app-inscripciones-grupos',
@@ -9,7 +9,7 @@ import { MenuService } from 'src/app/service/services/menu.service';
 export class InscripcionesGruposComponent implements OnInit {
   isSidebarReduced: boolean = false;
 
- constructor(private menuService: MenuService) {}
+ constructor(private menuService: MenuService) {} 
  proyectos = [
   { nombreGrupo: 'Grupo Alpha', lider: 'Juan Pérez', fechaInscripcion: '02-10-2025', descripcion: 'Desarrollo de software para educación.', numerocedula: '1006507972', telefono: '3102268473', correo: 'edi.ramos@udla.edu.co' },
   { nombreGrupo: 'Innovatech', lider: 'María Gómez', fechaInscripcion: '02-12-2025', descripcion: 'Prototipo de robot asistente.', numerocedula: '11193355429' , telefono: '3102268473', correo: 'edi.ramos@udla.edu.co'},

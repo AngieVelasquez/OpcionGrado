@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuService } from 'src/app/service/services/menu.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Linea } from 'src/app/model/Linea.model';
+import { Objetivo } from 'src/app/model/Objetivo.model';
+import { LineaService } from 'src/app/service/Linea.service';
+import { MenuService } from 'src/app/service/menu.service';
+import { ObjetivoService } from 'src/app/service/Objetivo.service';
 declare var bootstrap: any;
 @Component({
   selector: 'app-crear-convocatoria',
@@ -8,24 +14,163 @@ declare var bootstrap: any;
 })
 export class CrearConvocatoriaComponent implements OnInit {
   isSidebarReduced: boolean = false;
-  isModalOpen: boolean = false;
-  isCollapsed = true;
-  fechaInicio: string = '';
-  fechaFin: string = '';
-  
+  isCollapsed: boolean = true;
+  selectedOption: string = '';
+  selectedOptions: string[] = [];
+  fechaInicio: string = new Date().toISOString().split('T')[0];
+  fechaFin: string = new Date().toISOString().split('T')[0];
+  objetivos: Objetivo[] = []; 
+  objetivosSeleccionados: Objetivo[] = []; 
+  objetivosGuardados: Objetivo[] = [];
+  nuevoObjetivoForm: FormGroup;
+  objetivoEditado: Objetivo | null = null;
+  nuevaLineaForm: FormGroup;
+  lineas: Linea[] = [];
 
-  constructor(private menuService: MenuService) {
+  constructor(
+    private menuService: MenuService, 
+    private fb: FormBuilder,
+    private objetivoService: ObjetivoService,
+    private lineaService: LineaService,
+    private router: Router
+
+  ) {
+    this.nuevoObjetivoForm = this.fb.group({
+      nombre: ['', Validators.required],
+      descripcion: ['', Validators.required]
+    });
+    this.nuevaLineaForm = this.fb.group({
+      nombre: ['', Validators.required],
+      descripcion: ['', Validators.required]
+    });
     const hoy = new Date().toISOString().split('T')[0]; 
     this.fechaInicio = hoy;
     this.fechaFin = hoy;
   }
   
+  cargarLineas() {
+    this.lineaService.getLineas().subscribe(
+      (data) => {
+        console.log('Respuesta de la API:', data);
+        this.lineas = data; // Asegúrate de que data es un array antes de asignarlo
+      },
+      (error) => {
+        console.error('Error al cargar las líneas:', error);
+      }
+    );
+  }
   ngOnInit() {
+    this.cargarLineas();
     this.menuService.isSidebarReduced$.subscribe((isReduced) => {
       this.isSidebarReduced = isReduced;
     });
+    this.objetivoService.getObjetivos().subscribe(data => {
+      console.log('Objetivos recibidos:', data);
+      this.objetivos = data;
+    });
+    this.nuevaLineaForm = this.fb.group({
+      nombre: ['', Validators.required] 
+    });
+  }
+  seleccionarObjetivo(objetivo: any, event: Event) {
+    const checked = (event.target as HTMLInputElement).checked;
+    if (checked) {
+      if (!this.objetivosSeleccionados.includes(objetivo)) {
+        this.objetivosSeleccionados.push(objetivo);
+      }
+    } else {
+      this.objetivosSeleccionados = this.objetivosSeleccionados.filter(obj => obj !== objetivo);
+    }
+  }
+  
+  crearObjetivo() {
+    if (this.nuevoObjetivoForm.valid) {
+      const objetivo = this.nuevoObjetivoForm.value;
+      this.objetivoService.crearObjetivo(objetivo).subscribe(
+        response => {
+          console.log('Objetivo creado con éxito', response);
+          this.recargarObjetivos();
+          this.nuevoObjetivoForm.reset();
+        this.nuevoObjetivoForm.markAsPristine();
+        this.nuevoObjetivoForm.markAsUntouched();
+        },
+        error => {
+          console.error('Error al crear el objetivo', error);
+        }
+      );
+    }
+  }
+  recargarObjetivos() {
+    this.objetivoService.getObjetivos().subscribe(data => {
+      this.objetivos = data;
+    });
+  }
+  habilitarEdicion(objetivo: Objetivo) {
+    this.objetivoEditado = {...objetivo};
+    objetivo.editando = true;
+  }
+  guardarEdicion(objetivo: Objetivo) {
+    const objetivoActualizado = { ...objetivo };
+    delete objetivoActualizado.editando;
+    
+    this.objetivoService.actualizarObjetivo(objetivoActualizado).subscribe(
+      response => {
+        console.log('Objetivo actualizado con éxito', response);
+        objetivo.editando = false;
+        this.objetivoEditado = null;
+        
+        this.recargarObjetivos();
+      },
+      error => {
+        console.error('Error al actualizar el objetivo', error);
+        if (this.objetivoEditado) {
+          objetivo.nombre = this.objetivoEditado.nombre;
+          objetivo.descripcion = this.objetivoEditado.descripcion;
+          objetivo.editando = false;
+        }
+      }
+    );
   }
 
+  cancelarEdicion(objetivo: Objetivo) {
+    if (this.objetivoEditado) {
+      objetivo.nombre = this.objetivoEditado.nombre;
+      objetivo.descripcion = this.objetivoEditado.descripcion;
+    }
+    objetivo.editando = false;
+    this.objetivoEditado = null;
+  }
+
+  eliminarObjetivo(objetivo: Objetivo) {
+    if (confirm('¿Está seguro de que desea eliminar este objetivo?')) {
+      this.objetivoService.eliminarObjetivo(objetivo.idObjetivo).subscribe(
+        () => {
+          console.log('Objetivo eliminado con éxito');
+          this.objetivos = this.objetivos.filter(obj => obj.idObjetivo !== objetivo.idObjetivo);
+          this.objetivosSeleccionados = this.objetivosSeleccionados.filter(obj => obj.idObjetivo !== objetivo.idObjetivo);
+        },
+        error => {
+          console.error('Error al eliminar el objetivo', error);
+        }
+      );
+    }
+  }
+  crearLinea() {
+    if (this.nuevaLineaForm.valid) {
+      const linea = this.nuevaLineaForm.value;
+      
+      this.lineaService.crearLinea(linea).subscribe({
+        next: (response) => {
+          this.cargarLineas();
+          this.nuevaLineaForm.reset();
+        },
+        error: (error) => {
+          console.error("Error al crear línea:", error);
+        }
+      });
+    }
+  }
+  
   toggleCollapse() {
     this.isCollapsed = !this.isCollapsed;
   }
@@ -66,10 +211,6 @@ export class CrearConvocatoriaComponent implements OnInit {
       modal.show();
     }
   }
-  
-  selectedOption: string = "";
-  selectedOptions: string[] = [];
-
   updateBox() {
     if (this.selectedOption && !this.selectedOptions.includes(this.selectedOption)) {
       this.selectedOptions.push(this.selectedOption);
@@ -82,10 +223,12 @@ export class CrearConvocatoriaComponent implements OnInit {
   }
 
   Salir() {
-    window.location.href = '/principal';
+    this.router.navigate(['/principal']);
   }
-  guardarCambios(){
-    
+
+    guardarSeleccion() {
+    this.objetivosGuardados = [...this.objetivosSeleccionados];
   }
  
 }
+

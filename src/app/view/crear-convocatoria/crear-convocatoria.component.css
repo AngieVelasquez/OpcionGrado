@@ -89,12 +89,16 @@
   margin-top: 0;
   margin-bottom: 0;
 }
-
 textarea {
+  width: 81%;
+  height: 200px; 
+  padding: 4px; 
+}
+.crearobjetivotextarea {
   top: -15px; 
   left: 185px;
   width: 81%;
-  height: 200px; 
+  height: 70px; 
   padding: 4px; 
 }
 .object{
@@ -178,7 +182,7 @@ textarea {
  gap: 10px;
 }
 .selectlineas{
-  width: 60%;
+  width: 35%;
   margin-left: 1%;
 
 }
@@ -233,7 +237,14 @@ textarea {
   cursor: pointer;
   transition: 0.3s;
 }
-
+.textdescription1{
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+  left: 18%;
+  height: 50px;
+  top: 0;
+  margin: 0;
+}
 .checkbox-btn:hover {
   background-color: #72b0f3;
   color: white;
@@ -251,8 +262,8 @@ textarea {
   padding: 10px;
 }
 .custom-box {
-  width: 270px;
-  height: 50px;
+  width: 400px;
+  height: 69px;
   max-height: 200px;
   color: rgb(0, 0, 0);
   display: flex;
@@ -262,8 +273,8 @@ textarea {
   overflow-y: auto; 
   overflow-x: hidden;
   position: absolute;
-  top: 55%;
-  left: 63%;
+  top: 53%;
+  left: 39%;
   font-size: 10px;
   font-family: Arial, sans-serif;
   gap: 5px;
@@ -294,6 +305,23 @@ textarea {
   padding: 5px;
   transform: translateY(-50%);
 }
-#modalConfirmarGuardado{
- 
+.btncrear{
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 30px;
+  margin: 0;
+  padding: 5px;
+}
+.cantidad{
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+}
+#descripcion{
+  margin-left:-186px;
+  margin-top: 30px;
+  padding: 0;
+  width: 100%;
+}
+.form-group {
+  margin-bottom: 5px !important; /* Ajusta la separación entre elementos */
 }

@@ -1,5 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { MenuService } from 'src/app/service/services/menu.service';
+import { MenuService } from 'src/app/service/menu.service';
+import { LoginRequest } from 'src/app/model/Auth-response.model';
+import { PersonaService } from 'src/app/service/persona.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,15 +16,24 @@ export class MenuComponent implements OnInit {
 
   private readonly MOBILE_BREAKPOINT = 768; 
 
-  constructor(private menuService: MenuService) {} 
+  constructor(private menuService: MenuService, private personasService: PersonaService) {} 
 
   ngOnInit() {
+    const username = 'admin';
+    const password = '123';
+
+    this.personasService.login(username, password).subscribe(
+      response => console.log('Respuesta del servidor:', response),
+      error => console.error('Error:', error)
+    );
+
     this.updateSidebarVisibility();
     this.menuService.isSidebarReduced$.subscribe((isReduced) => {
       this.isSidebarReduced = isReduced;
     });
   }
 
+  
   @HostListener('window:resize')
   onResize() {
     this.updateSidebarVisibility();
@@ -32,7 +43,6 @@ export class MenuComponent implements OnInit {
   private updateSidebarVisibility() {
     this.isMobile = window.innerWidth <= this.MOBILE_BREAKPOINT;
     this.isSidebarVisible = !this.isMobile; 
-    this.isSidebarReduced = this.isMobile; 
   }
 
   /**

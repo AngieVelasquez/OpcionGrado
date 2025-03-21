@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; 
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './view/menu/menu.component';
@@ -13,6 +12,7 @@ import { VerConvocatoriaComponent } from './view/ver-convocatoria/ver-convocator
 import { GestionarProyectoComponent } from './view/gestionar-proyecto/gestionar-proyecto.component';
 import { InscripcionesGruposComponent } from './view/inscripciones-grupos/inscripciones-grupos.component';
 import { InscripcionProyectoComponent } from './view/inscripcion-proyecto/inscripcion-proyecto.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,8 @@ import { InscripcionProyectoComponent } from './view/inscripcion-proyecto/inscri
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     FormsModule 
 

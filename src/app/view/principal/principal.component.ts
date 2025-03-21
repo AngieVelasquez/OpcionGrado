@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { MenuService } from 'src/app/service/services/menu.service';
+import { MenuService } from 'src/app/service/menu.service';
 
 @Component({
   selector: 'app-principal',

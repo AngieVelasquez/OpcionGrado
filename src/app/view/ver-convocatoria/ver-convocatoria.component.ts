@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuService } from 'src/app/service/services/menu.service';
+import { MenuService } from 'src/app/service/menu.service';
 import { Router } from '@angular/router'; // ✅ Importa el Router
 declare var bootstrap: any;
 
