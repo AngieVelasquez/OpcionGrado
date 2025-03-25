@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Linea } from 'src/app/model/Linea.model';
+import { Modalidad } from 'src/app/model/Modalidad.model';
 import { Objetivo } from 'src/app/model/Objetivo.model';
 import { LineaService } from 'src/app/service/Linea.service';
 import { MenuService } from 'src/app/service/menu.service';
+import { ModalidadService } from 'src/app/service/Modalidad.service';
 import { ObjetivoService } from 'src/app/service/Objetivo.service';
 declare var bootstrap: any;
 @Component({
@@ -17,6 +19,7 @@ export class CrearConvocatoriaComponent implements OnInit {
   isCollapsed: boolean = true;
   selectedOption: string = '';
   selectedOptions: string[] = [];
+  selectedModalidad: string = '';
   fechaInicio: string = new Date().toISOString().split('T')[0];
   fechaFin: string = new Date().toISOString().split('T')[0];
   objetivos: Objetivo[] = []; 
@@ -26,12 +29,14 @@ export class CrearConvocatoriaComponent implements OnInit {
   objetivoEditado: Objetivo | null = null;
   nuevaLineaForm: FormGroup;
   lineas: Linea[] = [];
+  Modalidades: Modalidad[] = [];
 
   constructor(
     private menuService: MenuService, 
     private fb: FormBuilder,
     private objetivoService: ObjetivoService,
     private lineaService: LineaService,
+    private modalidadService: ModalidadService,
     private router: Router
 
   ) {
@@ -48,30 +53,42 @@ export class CrearConvocatoriaComponent implements OnInit {
     this.fechaFin = hoy;
   }
   
-  cargarLineas() {
-    this.lineaService.getLineas().subscribe(
-      (data) => {
-        console.log('Respuesta de la API:', data);
-        this.lineas = data; // Asegúrate de que data es un array antes de asignarlo
-      },
-      (error) => {
-        console.error('Error al cargar las líneas:', error);
-      }
-    );
-  }
+
   ngOnInit() {
     this.cargarLineas();
+    this.cargarModalidades();
     this.menuService.isSidebarReduced$.subscribe((isReduced) => {
       this.isSidebarReduced = isReduced;
     });
     this.objetivoService.getObjetivos().subscribe(data => {
-      console.log('Objetivos recibidos:', data);
       this.objetivos = data;
     });
     this.nuevaLineaForm = this.fb.group({
       nombre: ['', Validators.required] 
     });
   }
+  cargarLineas() {
+    this.lineaService.getLineas().subscribe(
+      (data) => {
+        this.lineas = data; 
+      },
+      (error) => {
+        console.error('Error al cargar las líneas:', error);
+      }
+    );
+  }
+  cargarModalidades() {
+    this.modalidadService.getModalidad().subscribe(
+      (data) => {
+        console.log('Respuesta de la API:', data);
+        this.Modalidades = data; 
+      },
+      (error) => {
+        console.error('Error al cargar las modalidades:', error);
+      }
+    );
+  }
+
   seleccionarObjetivo(objetivo: any, event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
     if (checked) {
@@ -83,12 +100,11 @@ export class CrearConvocatoriaComponent implements OnInit {
     }
   }
   
-  crearObjetivo() {
+  async crearObjetivo() {
     if (this.nuevoObjetivoForm.valid) {
       const objetivo = this.nuevoObjetivoForm.value;
       this.objetivoService.crearObjetivo(objetivo).subscribe(
         response => {
-          console.log('Objetivo creado con éxito', response);
           this.recargarObjetivos();
           this.nuevoObjetivoForm.reset();
         this.nuevoObjetivoForm.markAsPristine();
@@ -100,7 +116,7 @@ export class CrearConvocatoriaComponent implements OnInit {
       );
     }
   }
-  recargarObjetivos() {
+  async recargarObjetivos() {
     this.objetivoService.getObjetivos().subscribe(data => {
       this.objetivos = data;
     });
@@ -109,13 +125,12 @@ export class CrearConvocatoriaComponent implements OnInit {
     this.objetivoEditado = {...objetivo};
     objetivo.editando = true;
   }
-  guardarEdicion(objetivo: Objetivo) {
+ async guardarEdicion(objetivo: Objetivo) {
     const objetivoActualizado = { ...objetivo };
     delete objetivoActualizado.editando;
     
     this.objetivoService.actualizarObjetivo(objetivoActualizado).subscribe(
       response => {
-        console.log('Objetivo actualizado con éxito', response);
         objetivo.editando = false;
         this.objetivoEditado = null;
         
@@ -141,11 +156,10 @@ export class CrearConvocatoriaComponent implements OnInit {
     this.objetivoEditado = null;
   }
 
-  eliminarObjetivo(objetivo: Objetivo) {
+ async eliminarObjetivo(objetivo: Objetivo) {
     if (confirm('¿Está seguro de que desea eliminar este objetivo?')) {
       this.objetivoService.eliminarObjetivo(objetivo.idObjetivo).subscribe(
         () => {
-          console.log('Objetivo eliminado con éxito');
           this.objetivos = this.objetivos.filter(obj => obj.idObjetivo !== objetivo.idObjetivo);
           this.objetivosSeleccionados = this.objetivosSeleccionados.filter(obj => obj.idObjetivo !== objetivo.idObjetivo);
         },
@@ -155,7 +169,7 @@ export class CrearConvocatoriaComponent implements OnInit {
       );
     }
   }
-  crearLinea() {
+ async crearLinea() {
     if (this.nuevaLineaForm.valid) {
       const linea = this.nuevaLineaForm.value;
       

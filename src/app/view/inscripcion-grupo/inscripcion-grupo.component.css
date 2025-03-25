@@ -47,7 +47,6 @@
 }
 
 .btn-primary {
-  @extend .btn-base;
   padding: 2px;
   width: auto;
   height: 23px;
@@ -55,7 +54,6 @@
 }
 
 .btn-outline-success {
-  @extend .btn-base;
   height: 25px;
   background-color: rgb(246, 246, 247);
   color: var(--color-secondary);
@@ -71,7 +69,6 @@
 }
 
 .table-bordered {
-  @extend .table-base;
   margin-left: 50px;
   margin-top: 5px;
   width: 89%;
@@ -92,13 +89,11 @@
 }
 
 .form-control {
-  @extend .form-control-base;
   height: 25px;
   font-size: 13px;
 }
 
 .form-select {
-  @extend .form-control-base;
   font-size: 10px;
   padding: 5px;
 }
@@ -116,7 +111,6 @@
 .botonesfinales button {
   width: 80px;
   height: 30px;
-  @extend .btn-base;
 }
 
 /* Eliminación de estilos redundantes y optimización de selectores */

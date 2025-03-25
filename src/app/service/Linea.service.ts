@@ -17,7 +17,7 @@ export class LineaService {
   }
 
   crearLinea(linea: Linea): Observable<Linea> {
-    console.log("Enviando línea:", linea); // ✅ Depuración
+    console.log("Enviando línea:", linea); 
 
     return this.http.post<Linea>(`${this.apiUrl}/CrearLinea`, linea);
   }

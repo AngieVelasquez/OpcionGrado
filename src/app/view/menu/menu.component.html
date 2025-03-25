@@ -14,12 +14,11 @@
   </h3>
 </div>
 
-
 <div class="barraReducida" *ngIf="!isSidebarVisible" (click)="toggleSidebar($event)">
   <h3>Proyectos de Extensión<i class="fa-solid fa-chevron-down icono"></i></h3>
 </div>
 <div class="sidebar-overlay" *ngIf="isMobile && isSidebarVisible" (click)="toggleSidebar()"></div>
-<div class="sidebar" *ngIf="isSidebarVisible" [ngClass]="{'sidebar-visible': isSidebarVisible, 'sidebar-reduced': isSidebarReduced} " [ngClass]="{'reduced': isSidebarReduced, 'expanded': !isSidebarReduced}">
+<div class="sidebar" *ngIf="isSidebarVisible" [ngClass]="{'sidebar-visible': isSidebarVisible, 'sidebar-reduced': isSidebarReduced}">
   <h2>
     <i class="fa-regular fa-user"></i>
     Panel de Información 
@@ -27,8 +26,7 @@
   </h2>
   <div class="InformacionPersonal">
     <span class="bordeTexto">Información</span>
-    <label class="name">
-    </label>
+    <label class="name"></label>
   </div>
   <h1><i class="fa-solid fa-bars"></i> Menú Principal</h1>
   <div class="btn-group-vertical menu" role="group" aria-label="Vertical button group">
@@ -36,7 +34,7 @@
       <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" (click)="toggleAccordion('convocatorias')" aria-expanded="false">
         Convocatorias
       </button>
-      <ul  *ngIf="isConvocatoriasOpen">
+      <ul *ngIf="isConvocatoriasOpen">
         <li><a class="dropdown-item" [routerLink]="['crear-convocatoria']">Crear Convocatorias</a></li>
         <li><a class="dropdown-item" [routerLink]="['ver-convocatorias']">Ver Convocatorias</a></li>
       </ul>

@@ -273,6 +273,7 @@
         <option selected disabled>Selecciona</option>
         <option *ngFor="let linea of lineas" [value]="linea.id">{{ linea.nombre }}</option>
       </select>
+
     <div class="custom-box cuadroLineas">
       <span *ngFor="let option of selectedOptions; let i = index" class="selected-item">
         {{ option }}
@@ -280,19 +281,13 @@
       </span>
     </div>
 
-    <div class="select">
-      <label for="input" class="col-sm-2 col-form-label"
-        >Modalidad: <span class="aste">(*)</span></label
-      >
-      <select class="form-select" aria-label="Default select example">
-        <option selected>Selecciona</option>
-        <option value="1">
-          Actividades Artisticas, Culturales y Recreativas
-        </option>
-        <option value="2">Proyectos de extension Solidaria</option>
-        <option value="3">Educacion Continua</option>
-      </select>
-    </div>
+   <div class="select">
+  <label for="input" class="col-sm-2 col-form-label">Modalidad: <span class="aste">(*)</span></label>
+  <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedModalidad">
+    <option selected disabled>Selecciona</option>
+    <option *ngFor="let modalidad of Modalidades" [value]="modalidad.id">{{ modalidad.nombre }}</option>
+  </select>
+</div>
 
     <div class="container mt-3">
       <div class="d-flex align-items-center gap-3">

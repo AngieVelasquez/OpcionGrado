@@ -19,14 +19,7 @@ export class MenuComponent implements OnInit {
   constructor(private menuService: MenuService, private personasService: PersonaService) {} 
 
   ngOnInit() {
-    const username = 'admin';
-    const password = '123';
-
-    this.personasService.login(username, password).subscribe(
-      response => console.log('Respuesta del servidor:', response),
-      error => console.error('Error:', error)
-    );
-
+ 
     this.updateSidebarVisibility();
     this.menuService.isSidebarReduced$.subscribe((isReduced) => {
       this.isSidebarReduced = isReduced;
