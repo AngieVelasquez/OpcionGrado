@@ -1,5 +1,5 @@
 export interface Modalidad{
-    id: number;
+    idModalidad: string;
     nombre: string;
     estado?: number;
     editando?: boolean;

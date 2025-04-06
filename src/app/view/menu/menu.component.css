@@ -10,7 +10,7 @@ body {
   color: var(--white);
   background-color: var(--primary);
   height: 100vh;
-  overflow: hidden; /* Cambiado de none a hidden */
+  overflow: hidden; 
 }
 
 .barratitulo {
@@ -35,6 +35,7 @@ body {
   color: #052ee4;
   font-weight: 500;
   display: flex;
+  position: relative;
   align-items: center;
   font-family: Arial, sans-serif;
   font-weight: bold;
@@ -102,10 +103,11 @@ body {
   transition: transform 0.3s ease, width 0.3s ease;
   border-bottom: 1px solid var(--gray);
   display: block;
+  
 }
 
 .sidebar-reduced.sidebar-visible {
-  transform: translateX(0); /* Muestra la barra lateral desde la derecha */
+  transform: translateX(0);
 }
 
 .sidebar h2 {
@@ -130,13 +132,11 @@ body {
 
 .InformacionPersonal {
   display: flex;
-  position: fixed;
-  width: 14%;
+  position: relative;
+  width:100%;
   max-width: 200px;
-  min-width: 100px;
-  height: 180px;
-  top: 95px;
-  left: 10px;
+  height: 26%;
+  top: 30px;
   border: 1px solid rgb(185, 185, 185);
   justify-content: center;
   align-items: center;
@@ -166,20 +166,19 @@ body {
 
 .sidebar h1 {
   color: #ffffff;
-  font-weight: 500;
   text-align: center;
   font-size: 13px;
   background-color: #428BCA;
-  left: 0;
-  top: 48%;
-  position: fixed;
-  width: 16%;
+  top: 6%;
+  position: relative;
+  width: calc(100% + 40px); 
   height: 35px;
-  display: flex;
+  display: fixed;
   align-items: center;
   padding: 10px;
   gap: 20px;
   font-family: Arial, sans-serif;
+  left: -20px;
 }
 
 .fa-chevron-up {
@@ -190,26 +189,18 @@ body {
 .btn-group-vertical {
   display: flex;
   flex-direction: column;
-  width: 115%;
-  max-height: 210px;
+  width: 100%;
+  max-height: 250px;
   position: relative;
-  top: 48%;
+  top: 10%;
   overflow: auto;
   align-items: stretch;
-  left: -10px;
+  
 }
 
 .btn-group-vertical .btn {
   flex-grow: 0;
   width: 80%;
-}
-
-.dropdown-vertical .dropdown-menu {
-  position: relative;
-  inset: auto;
-  margin-top: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 
 .btn-group-vertical .btn {
@@ -246,6 +237,72 @@ body {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  max-height: 50vh;  
+  overflow-y: auto;
+}
+
+.acordeon-button {
+  background-color: #d9d9d9;
+  color: rgb(4, 4, 4);
+  border: none;
+  padding: 5px;
+  width: 100%;
+  text-align: left;
+  border-radius: 8px;;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 8px;
+}
+
+.acordeon-button:hover {
+  background-color: #59a3ec;
+  color: white;
+}
+
+.acordeon-contenido {
+  background-color: #f1f8ff;
+  padding: 10px 20px;
+  border-left: 3px solid #1976d2;
+  margin-bottom: 10px;
+  border-radius: 0 0 8px 8px;
+  background: white;
+  font-family: Arial, Helvetica, sans-serif;
+  
+}
+
+.acordeon-contenido a {
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: block;
+  color: #1976d2;
+  text-decoration: none;
+  padding: 5px 0;
+  font-weight: 500;
+}
+
+.acordeon-contenido a:hover {
+  text-decoration: none;
+  background-color: #d9d9d9;
+  color: white;
+  border-radius: 5px;
+}
+.boton-simple {
+  background-color: #d9d9d9;
+  color: rgb(0, 0, 0);
+  font-weight: 400;
+  border: none;
+  padding: 5px;
+  width: 100%;
+  text-align: left;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 8px;
+}
+
+.boton-simple:hover {
+  background-color: #59a3ec;
+  color: white;
 }
 
 .extra-btn {
@@ -254,59 +311,6 @@ body {
   background: #f0f0f0;
   border: none;
   padding: 10px;
-}
-
-.dropdown-menu {
-  position: static !important;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  background-color: #f1f1f1;
-  border: none;
-  list-style-type: none !important;
-}
-
-.dropdown-menu li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.dropdown-menu li a {
-  display: block;
-  padding: 8px 15px 8px 15px;
-  font-size: 12px;
-  color: #000000;
-  text-decoration: none;
-  font-family: Arial, sans-serif;
-  border-bottom: 1px solid #e7e7e7;
-  background-color: #f1f1f1;
-  outline: none;
-}
-
-.dropdown-menu li:last-child a {
-  outline: none;
-  border-bottom: none;
-}
-
-.dropdown-menu li a:hover {
-  background-color: #DAF0FF;
-}
-
-.dropdown-menu.show {
-  display: block;
-}
-
-.dropdown-item {
-  font-size: 10px;
-  padding: 8px;
-  color: #080808;
-  top: 10px;
-}
-
-.dropdown-item:hover {
-  background-color: #007bff;
-  color: white;
 }
 
 .btn-primary {
@@ -436,7 +440,7 @@ body {
   margin: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (max-height: 1000px) {
   .sidebar {
     transform: translateX(0);
     width: 10%;
@@ -445,18 +449,24 @@ body {
 
   .barraReducida {
     position: fixed;
-    top: 0;
+    top: 48px;
     left: 0;
-    margin-bottom: 0;
+    height: calc(100% - 48px);
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #428BCA;
+    z-index: 999;
   }
 
   .barraReducida h3 {
-    font-size: 15px;
+    font-size: 9px;
     top: 400px;
   }
 
   .icono {
-    font-size: 10px;
+    font-size: 9px;
     top: 0;
   }
 
@@ -465,12 +475,61 @@ body {
   }
 
   .InformacionPersonal {
-    width: 90%;
+    width: 100%;
+    top: 12%;
+  }
+  .encabezado-panel {
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .icono-izq {
+    position: absolute;
+    left: 10px;
+  }
+  
+  .icono-der {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+  .sidebar h1 {
+    top: 13%;
+    font-size: 9px;
+    text-align: left;
+  }
+  .bordeTexto{
+    font-size: 9px;
   }
 
   #informacionUniversidad {
     width: 80%;
   }
+  .menu{
+    top: 15%;
+  }
+  .acordeon-button {
+    font-size: 9px;
+  }
+  
+  .acordeon-button:hover {
+    background-color: #59a3ec;
+    color: white;
+  }
+  
+  .acordeon-contenido {
+    font-size: 9px;
+  }
+
+  .boton-simple {
+   font-size: 9px;
+  }
+
+  
 }
 
 .sidebar-overlay {
@@ -483,6 +542,7 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 4;
 }
+
 
 @media screen and (max-width: 1180px) {
   #Largo {

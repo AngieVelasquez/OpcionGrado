@@ -10,6 +10,7 @@ declare var bootstrap: any;
 export class InscripcionGrupoComponent implements OnInit{
  isSidebarReduced: boolean = false;
  isModalOpen: boolean = false;
+  router: any;
 
   constructor(private menuService: MenuService) {}
   
@@ -42,7 +43,7 @@ export class InscripcionGrupoComponent implements OnInit{
   }
  
   Salir() {
-    window.location.href = '/principal';
+    this.router.navigate(['/principal']);
   }
   selectedOption: string = "";
   selectedOptions: string[] = [];

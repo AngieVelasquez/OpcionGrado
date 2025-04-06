@@ -1,20 +1,612 @@
-<div class="main-container" [ngClass]="{'with-sidebar': !isSidebarReduced, 'without-sidebar': isSidebarReduced}">
-    <header class="main-header">
-      <img src="https://cdn-icons-png.freepik.com/256/943/943040.png?semt=ais_hybrid" class="img" alt=""> Gestionar Proyecto 
-          <button class="btn btn-danger close-btn" (click)="Salir()">X</button>
-    </header>
-    <ul class="nav nav-tabs">
+<div class="main-container" [ngClass]="{'with-sidebar': !isSidebarReduced,'without-sidebar': isSidebarReduced}">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+      <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Inscripción</a>
+          <a class="nav-link active" data-bs-toggle="tab" href="#content1"
+            >Inscripción</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Evaluación</a>
+          <a class="nav-link" data-bs-toggle="tab" href="#content2">Evaluación</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Seguimiento</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <a class="nav-link" data-bs-toggle="tab" href="#content3"
+            >Seguimiento</a
+          >
         </li>
       </ul>
+  
+      <div class="tab-content">
+        <!-- Pestaña 1: Inscripción -->
+        <div class="tab-pane fade show active" id="content1">
+          <div class="accordion" id="accordionProyecto">
+            <div class="accordion-item">
+              <div class="accordion-header" (click)="toggleAccordion(0)">
+              <h2 class="accordion-header" >
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseInscripcion"
+                  [ngClass]="isCollapsed[0] ? 'acordeon-abierto' : 'acordeon-cerrado'" 
+                >
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/32/32175.png"
+                    class="me-2"
+                  />
+                  Información general
+                </button>
+              </h2>
+            </div>
+
+            <div id="collapseInscripcion" *ngIf="isCollapsed[0]" class="accordion-body">
+                  <!-- Sección de información del proyecto -->
+                  <div class="mb-3 d-flex align-items-center">
+                    <label for="nombreProyecto" class="form-label me-2"
+                      >Nombre del proyecto:
+                      <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombreProyecto"
+                      placeholder="Digite el nombre de su propuesta"
+                    />
+                  </div>
+                  <div class="mb-3 d-flex align-items-center">
+                    <label for="grupoExtension" class="form-label me-2"
+                      >Nombre del grupo de extensión:
+                      <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="grupoExtension"
+                      placeholder="Seleccione el grupo de extensión"
+                    />
+                  </div>
+                  <div class="mb-3 d-flex align-items-center">
+                    <label
+                      for="duracionPropuesta"
+                      class="form-label me-2 flex-shrink-0"
+                      style="width: 300px"
+                      >Duración estimada de la propuesta:
+                      <span class="text-danger">*</span></label
+                    >
+                    <div class="flex-grow-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="duracionPropuesta"
+                      />
+                      <small class="text-muted d-block">Meses</small>
+                    </div>
+                  </div>
+                  <hr />
+  
+                  <!-- Sección de Integrantes -->
+                  <h5>
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/681/681443.png"
+                      class="me-2"
+                    />
+                    Integrantes
+                  </h5>
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="mb-3 d-flex align-items-center">
+                        <label for="buscarIntegrante" class="form-label  me-2" >Nombre del integrante:</label>
+                        <input
+                          type="text"
+                          id="buscarIntegrante"
+                          class="form-control w-50"
+                          placeholder="Buscar"
+                        />
+                        <button class="btn btn-light ms-2">
+                          <img
+                            src="https://cdn-icons-png.flaticon.com/512/622/622669.png"
+                            width="20"
+                          />
+                        </button>
+                        <button class="btn btn-primary ms-2">
+                          <img
+                            src="https://cdn-icons-png.flaticon.com/512/32/32339.png"
+                            width="20"
+                          />
+                          Agregar
+                        </button>
+                      </div>
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead class="table-light">
+                            <tr>
+                              <th>Identificación</th>
+                              <th>Nombre</th>
+                              <th>Estado</th>
+                              <th>Vinculación</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>123456</td>
+                              <td>Angie Velasquez</td>
+                              <td>Activo</td>
+                              <td>Estudiante</td>
+                            </tr>
+                            <tr>
+                              <td>789456</td>
+                              <td>Edinson Ramos</td>
+                              <td>Activo</td>
+                              <td>Estudiante</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <small class="text-muted"
+                          >*Docente, Estudiante, Administrativo, Graduado</small
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+  
+                  <!--Sección 3-->
+                  <h5>
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/5351/5351056.png"
+                      width="30"
+                      class="me-2"
+                    />
+                    Facultad, Programa, departamento o unidad de apoyo responsable
+                  </h5>
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead class="table-light">
+                            <tr>
+                              <th>Dependencia</th>
+                              <th>Facultad</th>
+                              <th>Programa</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td>Ingenieria</td>
+                              <td>Ingenieria de sistemas</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <small class="text-muted"
+                          >*Docente, Estudiante, Administrativo, Graduado</small
+                        >
+                      </div>
+                    </div>
+                  </div>
+  
+                  <hr />
+  
+                  <!--Sección 4-->
+                  <h5>
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/3564/3564797.png"
+                      width="30"
+                      class="me-2"
+                    />
+                    Duración
+                  </h5>
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="mb-3 d-flex align-items-center gap-3">
+                        <div class="d-flex align-items-center">
+                          <label for="fechainicio" class="form-label me-2"
+                            >Fecha Inicio:
+                            <span class="text-danger">*</span></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="fechainicio"
+                          />
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <label for="fechafin" class="form-label me-2"
+                            >Fecha Culminación:
+                            <span class="text-danger">*</span></label
+                          >
+                          <input type="text" class="form-control" id="fechafin" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!--Acordeon número 2-->
+            <div class="accordion-item">
+              <div class="accordion-header" (click)="toggleAccordion(1)">
+              <h2 class="accordion-header">
+                  <button class="accordion-button collapsed"  [ngClass]="isCollapsed[1] ? 'acordeon-abierto' : 'acordeon-cerrado'"  type="button" 
+                      data-bs-toggle="collapse" data-bs-target="#collapseInscripcion2">
+                      <img src="https://cdn-icons-png.flaticon.com/128/4288/4288211.png" width="30" class="me-2"> 
+                      Descripción
+                  </button>
+              </h2> 
+            </div>        
+              <div id="collapseInscripcion1" *ngIf="isCollapsed[1]" class="accordion-body">
+                 <div class="accordion-body">
+                      <div class="mb-3">
+                          <label for="planteamiento" class="form-label">Planteamiento del problema (Máximo una cuartilla):</label>
+                          <textarea class="form-control" id="planteamiento" rows="3" placeholder="Describa el problema a tratar"></textarea>
+                      </div>
+              
+                      <div class="mb-3">
+                          <label for="justificacion" class="form-label">Justificación (Máximo una cuartilla):</label>
+                          <textarea class="form-control" id="justificacion" rows="3" placeholder="Explique la justificación del proyecto"></textarea>
+                      </div>
+              
+                      <div class="mb-3">
+                          <label class="form-label">Objetivos:</label>
+                          <div class="mb-2">
+                              <label for="objetivoGeneral" class="form-label">1. General:</label>
+                              <textarea class="form-control" id="objetivoGeneral" rows="2" placeholder="Objetivo general"></textarea>
+                          </div>
+                          <div class="mb-3">
+                            <label for="objetivoEspecifico" class="form-label">2. Específicos:</label>
+                            <div class="d-flex">
+                                <input type="text" class="form-control me-2" id="objetivoEspecifico" placeholder="Ingrese un objetivo específico">
+                                <button class="btn btn-primary" type="button" onclick="agregarObjetivo()">Agregar</button>
+                          </div>
+                        </div>          
+                        <ul class="list-group mt-2" id="listaObjetivos"></ul>
+                      </div>
+                      <div class="mb-3">
+                          <label for="poblacion" class="form-label">Población a la cual va dirigido:</label>
+                          <textarea class="form-control" id="poblacion" rows="3" placeholder="Indique la población objetivo"></textarea>
+                      </div>
+                      <label for="poblacion" class="form-label"><strong>Indicadores de cobertura</strong></label>
+                      <div class="container">
+                        
+                        <div class="row">
+                            <!-- Primera tabla -->
+                            <div class="col-md-6 mb-3">
+                                <table class="table table-bordered table-sm text-center">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4"><strong>Áreas de trabajo</strong> (Por favor seleccione)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Educación</td>
+                                            <td><input type="checkbox"></td>
+                                            <td>Desarrollo agropecuario</td>
+                                            <td><input type="checkbox"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Desarrollo productivo y generación de ingresos en empresas</td>
+                                            <td><input type="checkbox"></td>
+                                            <td>Desarrollo tecnológico industrial</td>
+                                            <td><input type="checkbox"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Medio ambiente y recursos naturales</td>
+                                            <td><input type="checkbox"></td>
+                                            <td>Desarrollo social e inclusión</td>
+                                            <td><input type="checkbox"></td>
+                                        </tr>                            
+                                    </tbody>
+                                </table>
+                            </div>
+                    
+                            <!-- Segunda tabla -->
+                            <div class="col-md-6 mb-3">
+                                <table class="table table-bordered table-sm text-center">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4"><strong>Población por ciclo vital</strong> (Por favor seleccione)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Primera infancia</td>
+                                            <td><input type="checkbox"></td>
+                                            <td>Niñez</td>
+                                            <td><input type="checkbox"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jóvenes</td>
+                                            <td><input type="checkbox"></td>
+                                            <td>Adultos</td>
+                                            <td><input type="checkbox"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Adultos mayores</td>
+                                            <td><input type="checkbox"></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>             
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    
+                        <div class="row">
+                            <!-- Tercera tabla -->
+                            <div class="col-md-6 mb-3">
+                                <table class="table table-bordered table-sm text-center">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4"><strong>Población por condición</strong> (Por favor seleccione)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Vulnerabilidad social - violencia intrafamiliar</td>
+                                            <td><input type="checkbox"></td>
+                                            <td>Grupos étnicos indígenas</td>
+                                            <td><input type="checkbox"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Consumo de sustancias psicoactivas</td>
+                                            <td><input type="checkbox"></td>
+                                            <td>Afectados por la violencia - Secuestro</td>
+                                            <td><input type="checkbox"></td>
+                                        </tr>                                     
+                                    </tbody>
+                                </table>
+                            </div>
+                    
+                            <!-- Cuarta tabla -->
+                            <div class="col-md-6 mb-3">
+                                <table class="table table-bordered table-sm text-center">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4"><strong>Población por grupos</strong> (Por favor seleccione)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Familia</td>
+                                            <td><input type="checkbox"></td>
+                                            <td>Mujeres</td>
+                                            <td><input type="checkbox"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Campesinos</td>
+                                            <td><input type="checkbox"></td>
+                                            <td>Empleados</td>
+                                            <td><input type="checkbox"></td>
+                                        </tr>                                     
+                                    </tbody>
+                                </table>
+                            </div>                   
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="metodologia" class="form-label">Metodologia:</label>
+                      <textarea class="form-control" id="metodologia" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="componenteinnovador" class="form-label">Componente Innovador:</label>
+                      <textarea class="form-control" id="componenteinnovador" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="resultadosesperados" class="form-label">Resultados esperados:</label>
+                      <textarea class="form-control" id="resultadosesperados" rows="3"></textarea>
+                    </div>                 
+                  </div>
+              </div>
+            </div>
+            <!--Acordeon número 3-->
+            <div class="accordion-item">
+              <div class="accordion-header" (click)="toggleAccordion(2)">
+              <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" [ngClass]="isCollapsed[2] ? 'acordeon-abierto' : 'acordeon-cerrado'"  type="button" 
+                      data-bs-toggle="collapse" data-bs-target="#collapseInscripcion3">
+                      <img src="https://cdn-icons-png.flaticon.com/128/15865/15865280.png" width="30" class="me-2"> 
+                      Cronograma de actividades
+                  </button>
+              </h2>
+              </div>
+
+                <div id="collapseInscripcion2" *ngIf="isCollapsed[2]" class="accordion-body">
+                  <div class="accordion-body">
+                      <div class="mb-3">
+                          <table class="table table-bordered">
+                              <thead>
+                                  <tr>
+                                      <th rowspan="2">CONCEPTO</th>
+                                      <th colspan="4" class="text-center">Períodos</th>
+                                  </tr>
+                                  <tr>
+                                      <th>Periodo 1</th>
+                                      <th>Periodo 2</th>
+                                      <th>Periodo 3</th>
+                                      <th>Periodo 4</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td><strong>Objetivo General</strong></td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td><strong>Objetivo Específico 1</strong></td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-4"><strong>Meta 1</strong></td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-5">Actividad 1</td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-5">Actividad 2</td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-4"><strong>Meta 2</strong></td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-5">Actividad 1</td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-5">Actividad 2</td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-4"><strong>Meta 3</strong></td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-5">Actividad 1</td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-5">Actividad 2</td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td><strong>Objetivo Específico 2</strong></td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-4"><strong>Meta 1</strong></td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-5">Actividad 1</td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-5">Actividad 2</td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-4"><strong>Meta 2</strong></td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-5">Actividad 1</td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td><strong>Objetivo Específico 3</strong></td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-4"><strong>Meta 1</strong></td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-5">Actividad 1</td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-5">Actividad 2</td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-4"><strong>Meta 2</strong></td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-5">Actividad 1</td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                                  <tr>
+                                      <td class="ps-5">Actividad 2</td>
+                                      <td></td><td></td><td></td><td></td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>         
+              </div>
+              <div class="accordion-item">
+                <div class="accordion-header"  (click)="toggleAccordion(3)">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" [ngClass]="isCollapsed[3] ? 'acordeon-abierto' : 'acordeon-cerrado'"  type="button" 
+                        data-bs-toggle="collapse" data-bs-target="#collapseInscripcion4">
+                        <img src="https://cdn-icons-png.flaticon.com/128/781/781760.png" width="30" class="me-2"> 
+                        Presupuesto
+                    </button>
+                </h2>
+              </div>
+              <div id="collapseInscripcion4" *ngIf="isCollapsed[3]" class="accordion-body">
+                    <div class="accordion-body">
+                      <div class="mb-3">       
+                        <img src="https://cdn-icons-png.flaticon.com/128/1611/1611261.png" alt="Icono" width="30" class="me-2">          
+                        <label for="presupuesto" class="form-label">Costo del programa, proyecto o actividad. </label>
+                        <div class="container mt-4">
+                            <div class="registro d-flex gap-2 mb-2">
+                              <select class="form-select detalle">
+                                <option value="Motores">Motores de combustión interna</option>
+                                <option value="Carne">Carne de cerdo fresca</option>
+                                <option value="Otro">Otro...</option>
+                              </select>
+                              <input type="number" class="form-control cantidad" placeholder="Cantidad">
+                              <input type="text" class="form-control unidad" placeholder="Unidad">
+                              <input type="number" class="form-control valor-unitario" placeholder="Valor Unitario">
+                              <input type="text" class="form-control valor-total" placeholder="Total" readonly>                           
+                          </div>                    
+                        </div>
+                        <table class="table table-bordered">
+                          <thead class="table-light">
+                              <tr>
+                                  <th colspan="2">Fuentes de financiamiento de la inversión:</th>
+                              </tr>
+                              <tr>
+                                  <th>Entidad o dependencia</th>
+                                  <th>Valor</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td contenteditable="true"></td>
+                                  <td contenteditable="true"></td>
+                              </tr>
+                              <tr>
+                                  <td contenteditable="true"></td>
+                                  <td contenteditable="true"></td>
+                              </tr>
+                              <tr>
+                                  <th>TOTAL</th>
+                                  <td contenteditable="true"></td>
+                              </tr>
+                          </tbody>
+                        </table>
+                        <div class="mb-3">
+                          <label for="bibliografia" class="form-label">Bibliografía:</label>
+                          <textarea id="bibliografia" class="form-control" rows="5" placeholder="Ingrese las referencias aquí..."></textarea>
+                        </div>   
+                        <div class="mb-3">
+                          <label for="archivoAnexos" class="form-label">Subir anexos:</label>
+                          <input type="file" class="form-control" id="archivoAnexos" accept=".pdf,.docx,.xlsx,.png,.jpg,.zip" multiple>
+  
+                          <label for="textoanexo" class="form-label">Ingresar Anexos:</label>
+                          <textarea class="form-control" id="textoanexo" rows="5" placeholder="Escribe aquí los anexos..."></textarea>
+                        </div>  
+                      </div>
+                    </div>
+                </div>         
+              </div>
+            
+          </div>
+        </div>
+      
+        <!-- Evaluación  -->
+        <div class="tab-pane fade" id="content2">
+          
+        </div>      
+        <!-- Seguimiento -->
+        <div class="tab-pane fade" id="content3">
+          
+        </div>
+      </div>
 </div>

@@ -8,6 +8,7 @@ import { MenuService } from 'src/app/service/menu.service';
 })
 export class InscripcionesGruposComponent implements OnInit {
   isSidebarReduced: boolean = false;
+  router: any;
 
  constructor(private menuService: MenuService) {} 
  proyectos = [
@@ -38,10 +39,10 @@ rechazarProyecto(proyecto: any) {
     });
   }
   Salir() {
-    window.location.href = '/principal';
+    this.router.navigate(['/principal']);
   }
-  cerrarproyecto(){
-    window.location.href = 'inscripciones-grupos  '
+  cerrarproyecto() {
+    this.router.navigate(['/inscripciones-grupos']);
   }
   isOpen = false;
 

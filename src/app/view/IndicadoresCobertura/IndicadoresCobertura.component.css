@@ -1,0 +1,164 @@
+.main-container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin-left: 16.2%;
+  margin-top: 4%; 
+  width: 82.9%;
+  transition: margin-left 0.3s ease;
+  border: 1px solid rgb(193, 193, 193);
+  height: 91vh;
+}
+.main-container.with-sidebar {
+  margin-left: 16.2%;
+}
+
+.main-container.without-sidebar {
+  margin-left: 2.7%;
+  width: calc(100% - 3%);
+  max-width: 100%;
+}
+
+.main-header {
+  position: relative;
+  background-color: #f7f5f5;
+  color: #044BFF;
+  padding: 7px;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 2px; 
+  right: 5px; 
+  width: 20px; 
+  height: 20px; 
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.contenedor {
+  width: 100vh;
+  margin: auto;
+  font-family: 'Arial', sans-serif;
+}
+
+.titulo {
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  background-color: #007bff;
+  margin-bottom: 25px;
+  color: white;
+}
+
+.acordeon {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  overflow: hidden;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+  padding-bottom: 10px;
+}
+
+.cabecera {
+  background-color: #f9f9f9;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+.cabecera h3{
+  font-size: 17px;
+
+}
+.flecha {
+  font-size: 14px;
+  color: #666;
+}
+
+.contenido {
+  padding: 10px 16px;
+  font-size: 12px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.acciones button {
+  margin-left: 10px;
+  font-size: 13px;
+}
+
+.agregar {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.agregar input {
+  flex: 1;
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.agregar button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.grid-acordeones {
+  display: grid;
+  margin-top: 20px;
+  padding: 20px;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px;
+}
+
+.acordeon.full-width {
+  grid-column: span 2;
+}
+.acciones button {
+  font-size: 13px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: all 0.2s ease;
+}
+
+.acciones .editar {
+  background-color: #e7f1ff;
+  color: #0366d6;
+}
+
+.acciones .eliminar {
+  background-color: #ffe7e7;
+  color: #d63333;
+}
+
+.acciones button:hover {
+  opacity: 0.85;
+}
+  
+@media screen and (max-width: 768px) {
+  .grid-acordeones {
+    grid-template-columns: 1fr;
+  }
+}

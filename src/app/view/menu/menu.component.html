@@ -19,7 +19,7 @@
 </div>
 <div class="sidebar-overlay" *ngIf="isMobile && isSidebarVisible" (click)="toggleSidebar()"></div>
 <div class="sidebar" *ngIf="isSidebarVisible" [ngClass]="{'sidebar-visible': isSidebarVisible, 'sidebar-reduced': isSidebarReduced}">
-  <h2>
+  <h2 class="encabezado-panel">
     <i class="fa-regular fa-user"></i>
     Panel de Información 
     <i class="fa-solid fa-chevron-up" (click)="toggleSidebar($event)"></i>
@@ -30,30 +30,34 @@
   </div>
   <h1><i class="fa-solid fa-bars"></i> Menú Principal</h1>
   <div class="btn-group-vertical menu" role="group" aria-label="Vertical button group">
-    <div class="btn-group" role="group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" (click)="toggleAccordion('convocatorias')" aria-expanded="false">
-        Convocatorias
-      </button>
-      <ul *ngIf="isConvocatoriasOpen">
-        <li><a class="dropdown-item" [routerLink]="['crear-convocatoria']">Crear Convocatorias</a></li>
-        <li><a class="dropdown-item" [routerLink]="['ver-convocatorias']">Ver Convocatorias</a></li>
-      </ul>
+    <!-- Botón estilo acordeón -->
+    <button class="acordeon-button" (click)="toggleAccordion('convocatorias')">
+      📂 Convocatorias
+    </button>
+    <div *ngIf="isConvocatoriasOpen" class="acordeon-contenido">
+      <a routerLink="/crear-convocatoria">Crear Convocatoria</a>
+      <a routerLink="/ver-convocatorias">Ver Convocatorias</a>
     </div>
-    <div class="btn-group" role="group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" (click)="toggleAccordion('proyectos')" aria-expanded="false">
-        Proyectos
-      </button>
-      <ul *ngIf="isProyectosOpen">
-        <li><a class="dropdown-item" [routerLink]="['inscripcion-grupo']">Inscripción de Grupo</a></li>
-        <li><a class="dropdown-item" [routerLink]="['inscripciones-grupos']">Inscripciones</a></li>
-        <li><a class="dropdown-item" [routerLink]="['gestionar-proyecto']">Gestionar Proyecto</a></li>
-      </ul>
+
+    <button class="acordeon-button" (click)="toggleAccordion('proyectos')">
+      📋 Proyectos
+    </button>
+    <div *ngIf="isProyectosOpen" class="acordeon-contenido">
+      <a routerLink="/inscripcion-grupo">Inscribir Grupo</a>
+      <a routerLink="/inscripciones-grupos">Inscripciones</a>
+      <a routerLink="/gestionar-proyecto">Gestionar Proyecto</a>
     </div>
-    <button type="button" id="Largo" class="btn btn-primary extra-btn">Indicadores de Cobertura</button>
-    <button type="button" class="btn btn-primary extra-btn">Usuarios</button>
+    <button class="boton-simple" routerLink="/IndicadoresCobertura">
+      📊 Indicadores de Cobertura
+    </button>
+    
+    <button class="boton-simple" routerLink="/IndicadoresCobertura">
+      👥 Usuarios
+    </button>
+    
   </div>
   <div id="informacionUniversidad">
-    <span>© 2024 <a href="https://www.uniamazonia.edu.co/inicgit initio/index.php/es/">Universidad de la Amazonia</a> - Todos los derechos reservados</span>
+    <span>©  {{ currentYear }} <a href="https://www.uniamazonia.edu.co/inicgit initio/index.php/es/">Universidad de la Amazonia</a> - Todos los derechos reservados</span>
   </div>
 </div>
 <div class="content">

@@ -5,7 +5,6 @@
   --bg-light: #f7f5f5;
 }
 
-/* Optimización de selectores y eliminación de redundancias */
 .main-container {
   display: flex;
   position: relative;
@@ -16,7 +15,6 @@
   border: 1px solid rgb(193, 193, 193);
 }
 
-/* Eliminación de transiciones costosas */
 .main-container.with-sidebar,
 .main-container.without-sidebar {
   margin-left: 16.2%;
@@ -28,7 +26,6 @@
   max-width: 100%;
 }
 
-/* Consolidación de estilos de fuente */
 .font-small {
   font-family: var(--font-primary);
   font-size: 10px;

@@ -11,8 +11,8 @@ import { InscripcionGrupoComponent } from './view/inscripcion-grupo/inscripcion-
 import { VerConvocatoriaComponent } from './view/ver-convocatoria/ver-convocatoria.component';
 import { GestionarProyectoComponent } from './view/gestionar-proyecto/gestionar-proyecto.component';
 import { InscripcionesGruposComponent } from './view/inscripciones-grupos/inscripciones-grupos.component';
-import { InscripcionProyectoComponent } from './view/inscripcion-proyecto/inscripcion-proyecto.component';
 import { HttpClientModule } from '@angular/common/http';
+import { IndicadoresCoberturaComponent } from './view/IndicadoresCobertura/IndicadoresCobertura.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     InscripcionGrupoComponent,
     VerConvocatoriaComponent,
     GestionarProyectoComponent,
-    InscripcionesGruposComponent,
-    InscripcionProyectoComponent
+    InscripcionesGruposComponent, 
+    IndicadoresCoberturaComponent
   ],
   imports: [
     BrowserModule,

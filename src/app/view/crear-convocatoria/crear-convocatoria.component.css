@@ -2,11 +2,24 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  margin-left: 16.2%;
-  margin-top: 4%; 
-  width: 82.9%;
+  margin: 2% auto;
+  width: 95%;
   transition: margin-left 0.3s ease;
   border: 1px solid rgb(193, 193, 193);
+  max-width: 1300px;
+  overflow: hidden; 
+}
+
+.main-container.with-sidebar {
+  margin-left: 16%;
+  width: 82%;
+}
+.main-container.without-sidebar {
+  margin-left: 2.7%;
+  width: calc(100% - 3%);
+}
+.img {
+  width: 25px;
 }
 .main-container.with-sidebar {
   margin-left: 16.2%;
@@ -20,9 +33,10 @@
 .img{
   width: 25px;
 }
-
+.d-flex{
+  padding: 7px;
+}
 .main-header {
-  position: relative;
   background-color: #f7f5f5;
   color: #044BFF;
   padding: 7px;
@@ -30,14 +44,15 @@
   font-family: Arial, sans-serif;
   font-weight: bold;
   font-size: 15px;
+  position: relative;
 }
 
 .close-btn {
   position: absolute;
-  top: 2px; 
-  right: 5px; 
-  width: 20px; 
-  height: 20px; 
+  top: 2px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
   font-size: 12px;
   display: flex;
   align-items: center;
@@ -89,35 +104,36 @@
   margin-top: 0;
   margin-bottom: 0;
 }
-textarea {
-  width: 81%;
-  height: 200px; 
-  padding: 4px; 
+
+textarea, .crearobjetivotextarea {
+  position: relative;
+  margin-left: -40px; /* Mueve el textarea */
+  width: 80%; /* Asegura que no crezca más de lo esperado */
+  max-width: 90%;
+  box-sizing: border-box;
 }
-.crearobjetivotextarea {
-  top: -15px; 
-  left: 185px;
-  width: 81%;
-  height: 70px; 
-  padding: 4px; 
-}
+
 .object{
   font-size: 13px;
   font-family: Arial, sans-serif;
   left: 0;
 }
-#input1 {
-  margin-left: 53px;
-}
+
 .input1{
-  margin-left: 7px;
+  margin-left: 5px;
+  margin: 10px;
 }
-
-
-.col-auto {
-  padding: 0 5px;
+.ms-n2 {
+  margin-left: -100px; 
 }
-
+#urlResolucion{
+  left: 40px;
+}
+.col-auto,
+.col-sm-6 {
+  max-width: 100%; 
+  padding: 0 10px; 
+}
 .col-sm-10 {
   padding: 0 5px;
 }
@@ -137,6 +153,7 @@ textarea {
   margin-left: 12%;
   width: 80%;
   overflow-y: auto; 
+  overflow-x: auto;
   font-size: 12px;
   height: 100px;
   transition: all 0.3s ease; 
@@ -176,15 +193,22 @@ textarea {
   padding: 8px 16px;
   
 }
-.form-select{
- font-size: 13px;
- padding: 5px;
- gap: 10px;
+.select1 {
+  display: flex;
+  flex-direction: row;
+  align-items: start; 
+  margin: 20px;
+
+}
+
+.selectmodalidad {
+  font-size: 13px;
+  width: 100%;
+  max-width: 100vh; 
 }
 .selectlineas{
-  width: 35%;
+  width: 35% !important;
   margin-left: 1%;
-
 }
 .input-group {
   display: flex;
@@ -262,7 +286,6 @@ textarea {
   padding: 10px;
 }
 .custom-box {
-  width: 400px;
   height: 69px;
   max-height: 200px;
   color: rgb(0, 0, 0);
@@ -273,8 +296,9 @@ textarea {
   overflow-y: auto; 
   overflow-x: hidden;
   position: absolute;
-  top: 53%;
-  left: 39%;
+  top: 56%;
+  width: 55%; 
+  left: 37%; 
   font-size: 10px;
   font-family: Arial, sans-serif;
   gap: 5px;
@@ -324,4 +348,112 @@ textarea {
 }
 .form-group {
   margin-bottom: 5px !important; 
+}
+@media (max-width: 768px) {
+  .main-container {
+    margin: 2% auto;
+    width: 95%;
+  }
+
+  .custom-box {
+    width: 100%; 
+    left: 0; 
+    top: auto; 
+  }
+
+  .selected-item {
+    width: 100%; 
+  }
+
+  .form-select,
+  .custom-input {
+    width: 100%;
+  }
+.container{
+  padding: 17px;
+}
+  .crear {
+    padding: 5px 10px; 
+  }
+
+  .table-container {
+    margin-left: 0;
+    width: 100%; 
+    font-size: 10px; 
+  }
+  .form-label,
+  .col-form-label,
+  .text,
+  .cantidad {
+    font-size: 12px;
+  }
+  .btncrear {
+    font-size: 10px; 
+    padding: 3px 8px;
+  }
+
+  .mb-3.row {
+    padding: 2px 5px;
+  }
+
+  textarea {
+    height: 100px;
+  }
+ 
+}
+@media (min-width: 768px) and (max-width: 1200px) {
+  .main-container {
+    width: 85%; 
+    margin: 2% auto;
+  }
+
+  .custom-box {
+    width: 90%;
+    left: 5%; 
+  }
+
+  .form-select,
+  .custom-input {
+    width: 90%;
+  }
+
+  .table-container {
+    width: 90%; 
+    font-size: 12px; 
+  }
+
+  .btncrear {
+    font-size: 12px; 
+    padding: 5px 10px;
+  }
+}
+@media (min-width: 1200px) {
+  .main-container {
+    top: 20px;
+    left: 7px;
+    margin: 2% auto;
+  }
+
+  .custom-box {
+    border-radius: 10px;
+    width: 55%; 
+    left: 37%; 
+    top: 56%;
+  }
+
+  .form-select,
+  .custom-input {
+    width: 70%;
+  }
+
+  .table-container {
+    width: 70%; 
+    font-size: 14px; 
+  }
+
+  .btncrear {
+    font-size: 14px; 
+    padding: 8px 16px;
+  }
+ 
 }

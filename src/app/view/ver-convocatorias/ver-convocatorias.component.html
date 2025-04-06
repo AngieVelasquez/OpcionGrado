@@ -1,6 +1,7 @@
 <div class="main-container" [ngClass]="{'with-sidebar': !isSidebarReduced, 'without-sidebar': isSidebarReduced}">
   <header class="main-header">
-    <img src="https://hospitalyolombo.gov.co/wp-content/uploads/2021/02/logo-convocatoria.png" class="img" alt=""> Convocatorias 
+    <img src="https://hospitalyolombo.gov.co/wp-content/uploads/2021/02/logo-convocatoria.png" class="img" alt="Logo Convocatorias"> 
+    Convocatorias 
     <button class="btn btn-danger close-btn" (click)="Salir()">X</button>
     <div class="general">General</div>
   </header>
@@ -21,14 +22,18 @@
     </div>
     <div class="card-body">
       <h5 class="card-title">{{ convocatoria.titulo }}</h5>
-      <p class="card-text">Desde: {{ convocatoria.fechaDesde }} - Hasta: {{ convocatoria.fechaHasta }} | Estado:
-        <span class="estado" [ngClass]="{'estado-activa': convocatoria.estado === 'Activa', 'estado-inactiva': convocatoria.estado === 'Inactiva'}">
+      <p class="card-text">
+        Desde: {{ formatearFecha(convocatoria.fechaInicio) }} - 
+        Hasta: {{ formatearFecha(convocatoria.fechaFin) }} | 
+        Estado:
+        <span class="estado" [ngClass]="{'estado-activa': convocatoria.estado === 'Activa', 'estado-inactiva': convocatoria.estado === 'Inactiva' }">
           {{ convocatoria.estado }}
-        </span>      </p>
+        </span>
+      </p>
     </div>
     <div class="card-links">
-      <a routerLink="/inscripcion-grupo" routerLinkActive="router-link-active" >Inscribir Grupo</a>
-      <a routerLink="/ver-convocatoria">Ver más</a>
+      <a routerLink="/inscripcion-grupo" routerLinkActive="router-link-active">Inscribir Grupo</a>
+      <a routerLink="/ver-convocatoria" (click)="verDetalle(convocatoria)">Ver más</a>
     </div>
   </div>
 </div>

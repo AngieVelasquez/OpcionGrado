@@ -2,12 +2,13 @@
     import { HttpClient, HttpHeaders } from '@angular/common/http';
     import { Observable } from 'rxjs';
     import { Objetivo } from '../model/Objetivo.model'; 
+import { environment } from 'src/environment/environment.development';
 
     @Injectable({
     providedIn: 'root'
     })
     export class ObjetivoService {
-        private apiUrl = 'https://localhost:7234/api/objetivo';
+          private apiUrl = `${environment.apiUrl}/objetivo`;
 
     private httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }) 

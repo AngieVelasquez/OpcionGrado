@@ -1,0 +1,63 @@
+<div class="main-container" [ngClass]="{'with-sidebar': !isSidebarReduced, 'without-sidebar': isSidebarReduced}">
+  <header class="main-header">
+    Indicadores de Cobertura
+    <button class="btn btn-danger close-btn" (click)="Salir()">X</button>
+  </header>
+
+  <div class="grid-acordeones">
+    <div *ngFor="let seccion of secciones" class="acordeon" [ngClass]="{ 'full-width': seccion.key === 'objetivos' }">
+      <div class="cabecera" (click)="toggleSeccion(seccion.key)">
+        <h3>{{ seccion.titulo }}</h3>
+        <span class="flecha">{{ seccion.abierto ? '▲' : '▼' }}</span>
+      </div>
+
+      <div *ngIf="seccion.abierto" class="contenido">
+        <div *ngIf="seccion.alerta" class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ seccion.alerta }}
+          <button type="button" class="btn-close" (click)="seccion.alerta"></button>
+        </div>
+        <div *ngFor="let item of getItemsPaginados(seccion)" class="item">
+          <div>
+            <strong>{{ item.nombre || item }}</strong>
+            <ng-container *ngIf="seccion.key === 'objetivos'">
+              <br>
+              <label>Descripción:</label>
+              <div *ngIf="item.descripcion">{{ item.descripcion }}</div>
+            </ng-container>
+          </div>
+          <div class="acciones">
+            <button class="editar">✏️</button>
+            <button class="eliminar">🗑</button>
+          </div>
+        </div>
+        <div class="paginacion" *ngIf="getTotalPaginas(seccion) > 1">
+          <button class="btn btn-sm btn-secondary me-1"
+                  [disabled]="seccion.paginaActual === 1"
+                  (click)="cambiarPagina(seccion.key, seccion.paginaActual - 1)">
+            «
+          </button>
+          <span>Página {{ seccion.paginaActual }} de {{ getTotalPaginas(seccion) }}</span>
+          <button class="btn btn-sm btn-secondary ms-1"
+                  [disabled]="seccion.paginaActual === getTotalPaginas(seccion)"
+                  (click)="cambiarPagina(seccion.key, seccion.paginaActual + 1)">
+            »
+          </button>
+        </div>    
+
+        <div class="agregar">
+          <input [(ngModel)]="seccion.nuevo" [placeholder]="'Agregar nuevo ' + seccion.nombreSingular" />
+        
+          <input *ngIf="seccion.key === 'objetivos'"
+                 [(ngModel)]="seccion.descripcionNueva"
+                 placeholder="Descripción del objetivo" />
+        
+          <button (click)="agregar(seccion.key)">Guardar</button>
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+
+  
+</div>

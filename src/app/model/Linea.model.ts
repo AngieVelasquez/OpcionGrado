@@ -1,6 +1,6 @@
 export interface Linea {
-    id: number;
-    nombre: string;
-    estado?: number;
-    editando?: boolean;
-  }
+  idLinea: string;
+  nombre: string;
+  estado?: number;
+  editando?: boolean;
+}
