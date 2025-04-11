@@ -1,7 +1,8 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MenuService } from 'src/app/service/menu.service';
 import { LoginRequest } from 'src/app/model/Auth-response.model';
-import { PersonaService } from 'src/app/service/persona.service';
+import { PersonaService } from 'src/app/service/Usuario.service';
+import { Usuario } from 'src/app/model/Usuario.model';
 
 @Component({
   selector: 'app-menu',
@@ -17,8 +18,9 @@ export class MenuComponent implements OnInit {
 
   private readonly MOBILE_BREAKPOINT = 768; 
   router: any;
+  nombreUsuario: string = '';
 
-  constructor(private menuService: MenuService, private personasService: PersonaService) {} 
+  constructor(private menuService: MenuService, private personaService: PersonaService) {} 
   ngAfterViewInit(): void {
     setTimeout(() => {
       if (this.dropdownButton) {
@@ -28,7 +30,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
- 
+
     this.updateSidebarVisibility();
     this.menuService.isSidebarReduced$.subscribe((isReduced) => {
       this.isSidebarReduced = isReduced;
@@ -37,6 +39,12 @@ export class MenuComponent implements OnInit {
       this.isSidebarVisible = false;
       this.isMobile = true;
     }
+    this.personaService.getUsuarios().subscribe((response) => {
+      this.nombreUsuario = response.nombreCompleto;
+      console.log(this.nombreUsuario); 
+    }, (error) => {
+      console.error('Error al obtener los usuarios:', error);
+    });
   }
 
   

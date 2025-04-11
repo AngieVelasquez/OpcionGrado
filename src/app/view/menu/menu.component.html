@@ -26,13 +26,14 @@
   </h2>
   <div class="InformacionPersonal">
     <span class="bordeTexto">Información</span>
-    <label class="name"></label>
+    <label class="nombre-completo">{{ nombreUsuario }}</label>
   </div>
   <h1><i class="fa-solid fa-bars"></i> Menú Principal</h1>
   <div class="btn-group-vertical menu" role="group" aria-label="Vertical button group">
     <!-- Botón estilo acordeón -->
     <button class="acordeon-button" (click)="toggleAccordion('convocatorias')">
-      📂 Convocatorias
+      Convocatorias
+      <span class="flecha" [class.abierta]="isConvocatoriasOpen">▼</span>
     </button>
     <div *ngIf="isConvocatoriasOpen" class="acordeon-contenido">
       <a routerLink="/crear-convocatoria">Crear Convocatoria</a>
@@ -40,19 +41,21 @@
     </div>
 
     <button class="acordeon-button" (click)="toggleAccordion('proyectos')">
-      📋 Proyectos
+      Proyectos
+      <span class="flecha" [class.abierta]="isProyectosOpen">▼</span>
     </button>
     <div *ngIf="isProyectosOpen" class="acordeon-contenido">
       <a routerLink="/inscripcion-grupo">Inscribir Grupo</a>
+      <a routerLink="/ver-convocatorias">Mis Grupos</a>
       <a routerLink="/inscripciones-grupos">Inscripciones</a>
       <a routerLink="/gestionar-proyecto">Gestionar Proyecto</a>
     </div>
     <button class="boton-simple" routerLink="/IndicadoresCobertura">
-      📊 Indicadores de Cobertura
+      Indicadores de Cobertura
     </button>
     
     <button class="boton-simple" routerLink="/IndicadoresCobertura">
-      👥 Usuarios
+      Usuarios
     </button>
     
   </div>
