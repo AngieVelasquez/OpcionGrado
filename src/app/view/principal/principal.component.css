@@ -38,7 +38,7 @@
   flex: 1;
   padding: 20px;
   background-color: #ffffff;
-  height: 82vh;
+  height: calc(100vh - 60px);
   overflow: auto;
 }
 .principal-wrapper {
@@ -177,7 +177,6 @@
   .main-container {
     margin-left: 10%;
     width: 90%;
-    height: calc(100vh - 100px);
   }
   .hero-content h1{
     font-size: 1.2rem;
