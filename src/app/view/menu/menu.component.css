@@ -10,7 +10,7 @@ body {
   color: var(--white);
   background-color: var(--primary);
   height: 100vh;
-  overflow: hidden; 
+  overflow-y: auto;
 }
 
 .barratitulo {
@@ -65,7 +65,7 @@ body {
 }
 
 .barraRecargarpagina h3 {
-  font-size: 10px;
+  font-size: 12px;
   color: #000000;
   font-weight: 500;
   margin: 0;
@@ -86,54 +86,40 @@ body {
 }
 
 .sidebar {
+  position: fixed;
+  top: 48px;
+  left: 0;
   width: 16%;
   min-width: 150px;
   max-width: 250px;
   height: 100vh;
-  overflow: auto;
+  overflow-y: auto;
   background-color: white;
-  color: black;
-  position: fixed;
-  top: 48px;
-  left: 0;
-  padding: 20px;
-  border-right: 1px solid rgb(185, 185, 185);
-  border-top: 1px solid rgb(185, 185, 185);
-  z-index: 5;
-  transition: transform 0.3s ease, width 0.3s ease;
-  border-bottom: 1px solid var(--gray);
-  display: block;
-  
+  border: 1px solid rgb(214, 214, 214);
+  box-sizing: border-box;
+  z-index: 1;
 }
 
 .sidebar-reduced.sidebar-visible {
   transform: translateX(0);
 }
-
 .sidebar h2 {
   color: #ffffff;
-  font-weight: 500;
   text-align: center;
   font-size: 13px;
   background-color: #428BCA;
-  position: fixed;
-  width: 16%;
-  height: 35px;
+  width: 100%;
+  height: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: 0;
-  left: 0;
-  top: 48px;
   font-family: Arial, sans-serif;
 }
 
 .InformacionPersonal {
   display: flex;
   position: relative;
-  width:100%;
+  width: 100%;
   max-width: 200px;
   height: 26%;
   top: 30px;
@@ -141,8 +127,8 @@ body {
   justify-content: center;
   align-items: center;
   font-family: Arial, sans-serif;
+  margin: 0 auto;
 }
-
 .bordeTexto {
   font-size: 14px;
   color: #575757;
@@ -153,7 +139,6 @@ body {
   padding: 0 8px;
   background-color: white;
 }
-
 .sidebar-overlay {
   position: fixed;
   top: 0;
@@ -163,7 +148,6 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 4;
 }
-
 .sidebar h1 {
   color: #ffffff;
   text-align: center;
@@ -197,7 +181,6 @@ body {
   align-items: stretch;
   
 }
-
 .btn-group-vertical .btn {
   flex-grow: 0;
   width: 80%;
@@ -221,11 +204,9 @@ body {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-
 .btn-group-vertical .btn:hover {
   background-color: #DAF0FF;
 }
-
 .btn-group {
   position: static;
   display: flex;
@@ -238,9 +219,12 @@ body {
   flex-direction: column;
   align-items: stretch;
   max-height: 100vh;  
+  width: 100%;
+  padding: 20px;
   overflow-y: auto;
-}
+  margin: 0 auto;
 
+}
 .acordeon-button {
   background-color: #d9d9d9;
   color: rgb(4, 4, 4);
@@ -253,7 +237,6 @@ body {
   transition: background-color 0.3s;
   margin-bottom: 8px;
 }
-
 .acordeon-button:hover {
   background-color: #59a3ec;
   color: white;
@@ -372,19 +355,42 @@ body {
 }
 
 .barraReducida {
-  position: fixed;
-  display: flex;
-  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
   width: 30px;
-  transition: background-color 0.3s ease-in-out;
-  overflow: hidden;
   background-color: #428BCA;
   color: white;
   font-size: 1.2em;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  transition: background-color 0.3s ease-in-out;
+  align-items: center;  
+}
+
+.barraReducida h3 {
+  margin: 0; 
+  transform: rotate(270deg);
+  width: 100%;
+  line-height: 30px;
+  transform-origin: top left;  
+  white-space: nowrap;
+  text-align: left;  
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  margin-top: -360px;
+}
+.icono {
+  font-size: 10px;
+  margin-left: 5px;
+  padding: 3px;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
 }
 
 .barraReducida:hover {
@@ -411,31 +417,6 @@ body {
 .sidebar.ng-leave.ng-leave-active {
   transform: translateX(-100%);
 }
-
-.barraReducida h3 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0;
-  font-size: 20px;
-  font-family: Arial, sans-serif;
-  white-space: nowrap;
-  transform: rotate(270deg);
-}
-
-.icono {
-  font-size: 10px;
-  margin-left: 10px;
-  padding: 5px;
-  border: 2px solid white;
-  border-radius: 50%;
-  transform: rotate(360deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .fa-chevron-up {
   cursor: pointer;
 }
@@ -453,18 +434,20 @@ body {
 }
 
 #informacionUniversidad {
-  position: fixed;
-  display: flex;
-  width: 16%;
-  height: 8%;
-  top: 92%;
+  position: absolute;
+  bottom: 0;
   left: 0;
+  width: 100%;     
+  height: 11%;       
+  font-size: 12PX;
   background-color: #428BCA;
-  font-size: 10px;
+  display: flex;
   align-items: center;
+  justify-content: center;
   text-align: center;
   font-family: Arial, sans-serif;
   color: white;
+  box-sizing: border-box;
 }
 
 #informacionUniversidad a {
@@ -493,133 +476,132 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 4;
 }
-@media screen and (max-width: 768px) and (max-height: 1000px) {
-  .sidebar {
-    transform: translateX(0);
-    width: 10%;
-    top: 0;
+@media screen and (max-width: 1318px) {
+ .barraRecargarpagina{
+  width: 100%;
+ }
+ .sidebar h2{
+  font-size: 10px;
+ }
+ .InformacionPersonal {
+  margin: 8px; 
+  padding: 3px;
+  width: 90%;
+ }
+ .menu{
+  font-size: 12px;
+  height:40%;
+  max-height: 80%;
+  overflow-y: auto;
+  margin-top: -18px;
+ }
+ .flecha{
+  font-size: 12px;
+ }
+ .menu .acordeon-contenido a {
+  font-size: 10px;
+ }
+}
+@media screen and (max-width: 768px) {
+  /* Ajustes generales para las barras superiores */
+  .barratitulo, 
+  .barraRecargarpagina {
+    padding-left: 10px;
+    text-align: center;
   }
-
-  .barraReducida {
+  
+  .barratitulo h3,
+  .barraRecargarpagina h3 {
+    font-size: 12px;
+    justify-content: center;
+  }
+  
+  /* Establece la sidebar en modo overlay */
+  .sidebar {
+    position: fixed;
+    top: 48px;  /* Debajo de las dos barras fijas (24px cada una) */
+    left: 0;
+    width: 80%; /* Ajusta el ancho de la sidebar para móviles */
+    height: calc(100vh - 48px);
+    background-color: white;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    /* Oculta la sidebar fuera de pantalla por defecto */
+    transform: translateX(-100%);
+  }
+  
+  /* Cuando la sidebar se muestre (agregada la clase 'sidebar-visible') */
+  .sidebar.sidebar-visible {
+    transform: translateX(0);
+  }
+  
+  /* La superposición para cerrar la sidebar */
+  .sidebar-overlay {
+    display: block;
     position: fixed;
     top: 48px;
     left: 0;
-    height: calc(100% - 48px);
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 900;
+  }
+  
+  /* La barra reducida, que funciona como botón para abrir la sidebar */
+  .barraReducida {
+    position: fixed;
+    top: 48px; /* Debajo de las barras superiores */
+    left: 0;
+    height: calc(100vh - 48px);
     width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: #428BCA;
-    z-index: 999;
-  }
-
-  .barraReducida h3 {
-    font-size: 9px;
-    top: 400px;
-  }
-
-  .icono {
-    font-size: 9px;
-    top: 0;
-  }
-
-  .btn-group-vertical {
-    top: 62%;
-  }
-
-  .InformacionPersonal {
-    width: 100%;
-    top: 12%;
-  }
-  .encabezado-panel {
-    font-size: 9px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  .icono-izq {
-    position: absolute;
-    left: 10px;
-  }
-  
-  .icono-der {
-    position: absolute;
-    right: 10px;
+    z-index: 1100;
     cursor: pointer;
   }
   
-  .sidebar h1 {
-    top: 13%;
-    font-size: 9px;
-    text-align: left;
+  .barraReducida h3 {
+    margin: 0;
+    font-size: 10px;
+    transform: rotate(270deg);
+    transform-origin: top left;
+    white-space: nowrap;
   }
-  .bordeTexto{
-    font-size: 9px;
+  
+  .content {
+    margin-top: 48px;
   }
-
-  #informacionUniversidad {
-    width: 80%;
+  
+  .sidebar h2,
+  .encabezado-panel {
+    font-size: 1rem;
+    padding: 10px;
   }
-  .menu{
-    top: 15%;
+  
+  .InformacionPersonal {
+    margin: 10px auto;
+    padding: 10px;
+    width: 90%;     
+    font-size: 0.9rem;
+    top: auto;     
   }
+  
+  .btn-group-vertical.menu {
+    font-size: 0.9rem;
+  }
+  
   .acordeon-button {
-    font-size: 9px;
+    font-size: 0.9rem;
+    padding: 8px;
   }
   
-  .acordeon-button:hover {
-    background-color: #59a3ec;
-    color: white;
-  }
-  
-  .acordeon-contenido {
-    font-size: 9px;
-  }
-
-  .boton-simple {
-   font-size: 9px;
-  }
-}
-
-
-
-@media screen and (max-width: 1180px) {
-  #Largo {
-    white-space: normal;
-    word-wrap: break-word;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-}
-
-@media screen and (max-width: 950px) {
-  .sidebar h2 {
-    display: block;
-    width: 150px;
-  }
-
-  .sidebar h1 {
-    display: block;
-    width: 150px;
-  }
-
   #informacionUniversidad {
-    display: block;
-    width: 150px;
-  }
-
-  #Largo {
-    white-space: normal;
-    word-wrap: break-word;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    font-size: 0.8rem;
+    padding: 5px;
+    width: 100%;
   }
 }
+

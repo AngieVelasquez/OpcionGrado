@@ -24,7 +24,7 @@ export class CrearConvocatoriaComponent implements OnInit {
   
   selectedOption: { idLinea: string, nombre: string } | null = null;
   selectedOptions: { idLinea: string, nombre: string }[] = [];
-  selectedModalidad: string = '';
+  selectedModalidad: any = null;
   
   fechaInicio: string = new Date().toISOString().split('T')[0];
   fechaFin: string = new Date().toISOString().split('T')[0];
@@ -52,6 +52,19 @@ export class CrearConvocatoriaComponent implements OnInit {
     objetivos: [],	
     lineas: [],
   };
+  secciones = [
+    {
+      key: 'objetivos',
+      titulo: 'Objetivos',
+      alerta: ''
+    },
+    {
+      key: 'Lineas',
+      titulo: 'Lineas',
+      alerta: ''
+    }
+      ]
+
 
   constructor(
     private menuService: MenuService,
@@ -199,7 +212,12 @@ export class CrearConvocatoriaComponent implements OnInit {
         next: () => {
           this.recargarObjetivos();
           this.nuevoObjetivoForm.reset();
-          this.cerrarModal('CrearObjetivos');
+          const seccion = this.secciones.find(s => s.key === 'objetivos');
+          if (seccion) {
+            seccion.alerta = '✅ ¡Objetivo creado con éxito!';
+            setTimeout(() => seccion.alerta = '', 3000); 
+
+          }
         },
         error: (error) => console.error('Error al crear el objetivo', error)
       });
@@ -259,7 +277,11 @@ export class CrearConvocatoriaComponent implements OnInit {
         next: () => {
           this.cargarLineas();
           this.nuevaLineaForm.reset();
-          this.cerrarModal('modalCrearLinea');
+          const seccion = this.secciones.find(s => s.key === 'Lineas');
+          if (seccion) {
+            seccion.alerta = '✅ ¡Línea creada con éxito!';
+            setTimeout(() => seccion.alerta = '', 3000); 
+          }
         },
         error: (error) => console.error('Error al crear línea:', error)
       });
@@ -271,19 +293,38 @@ export class CrearConvocatoriaComponent implements OnInit {
   }
 
   openModal(modalId: string): void {
+    if (modalId === 'modalConfirmarGuardado') {
+      if (!this.convocatoria.fechaInicio || !this.convocatoria.fechaFin) {
+        this.mostrarToast('Debe ingresar la fecha inicio y la fecha fin.');
+        return;
+      }
+      
+      const fechaInicio = new Date(this.convocatoria.fechaInicio);
+      const fechaFin = new Date(this.convocatoria.fechaFin);
+      
+      if (fechaFin <= fechaInicio) {
+        this.mostrarToast('La fecha de fin debe ser mayor a la fecha de inicio.');
+        return;
+      }
+    }
+
     const modalElement = document.getElementById(modalId);
     if (modalElement) {
       new bootstrap.Modal(modalElement, { keyboard: false }).show();
     }
   }
-
-  private cerrarModal(modalId: string): void {
-    const modalElement = document.getElementById(modalId);
-    if (modalElement) {
-      const modal = bootstrap.Modal.getInstance(modalElement);
-      modal?.hide();
+  mostrarToast(mensaje: string): void {
+    const toastEl = document.getElementById('alertToast');
+    if (toastEl) {
+      const toastBody = toastEl.querySelector('.toast-body');
+      if (toastBody) {
+        toastBody.textContent = mensaje;
+      }
+      const toast = new bootstrap.Toast(toastEl);
+      toast.show();
     }
   }
+
   updateBox() {
     if (!this.selectedOption) {
       console.log("➡️ Sin línea seleccionada");
@@ -310,12 +351,14 @@ calcularDuracion() {
 
     if (fechaFin >= fechaInicio) {
       const diferenciaDias = (fechaFin.getTime() - fechaInicio.getTime()) / (1000 * 60 * 60 * 24);
-      this.convocatoria.duracion = Math.round(diferenciaDias); 
+      // Contar de forma inclusiva:
+      this.convocatoria.duracion = Math.floor(diferenciaDias) + 1; 
     } else {
       this.convocatoria.duracion = 0;
     }
   }
 }
+
 
   removeOption(index: number): void {
     this.selectedOptions.splice(index, 1);

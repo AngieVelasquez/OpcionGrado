@@ -40,27 +40,34 @@
       <a routerLink="/ver-convocatorias">Ver Convocatorias</a>
     </div>
 
+    <button class="acordeon-button" (click)="toggleAccordion('grupos')">
+      Grupos
+      <span class="flecha" [class.abierta]="isGrupoOpen">▼</span>
+    </button>
+    <div *ngIf="isGrupoOpen" class="acordeon-contenido">
+      <a routerLink="/inscripcion-grupo">Inscribir Grupo</a>
+      <a routerLink="/">Mis Grupos</a>
+    </div>
+
     <button class="acordeon-button" (click)="toggleAccordion('proyectos')">
       Proyectos
       <span class="flecha" [class.abierta]="isProyectosOpen">▼</span>
     </button>
     <div *ngIf="isProyectosOpen" class="acordeon-contenido">
-      <a routerLink="/inscripcion-grupo">Inscribir Grupo</a>
-      <a routerLink="/ver-convocatorias">Mis Grupos</a>
-      <a routerLink="/inscripciones-grupos">Inscripciones</a>
+      <a routerLink="/inscripciones-grupos">Inscripciones Grupos</a>
       <a routerLink="/gestionar-proyecto">Gestionar Proyecto</a>
     </div>
     <button class="boton-simple" routerLink="/IndicadoresCobertura">
       Indicadores de Cobertura
     </button>
     
-    <button class="boton-simple" routerLink="/IndicadoresCobertura">
-      Usuarios
+    <button class="boton-simple" routerLink="/">
+      Reportes
     </button>
     
   </div>
   <div id="informacionUniversidad">
-    <span>©  {{ currentYear }} <a href="https://www.uniamazonia.edu.co/inicgit initio/index.php/es/">Universidad de la Amazonia</a> - Todos los derechos reservados</span>
+    <span>©  {{ currentYear }} <a href="https://www.uniamazonia.edu.co/inicgit initio/index.php/es/">Universidad de la Amazonia</a> - Todos los derechos reservados.</span>
   </div>
 </div>
 <div class="content">

@@ -1,24 +1,23 @@
 .main-container {
   display: flex;
+  position: relative;
   flex-direction: column;
-  margin: 3.5% auto 0 auto;  
-  width: 95%;
+  margin-left: 15%;
+  margin-top: 3%;
+  width: calc(100% - 16%);
   transition: margin-left 0.3s ease;
   border: 1px solid rgb(193, 193, 193);
-  max-width: 1300px;
-  min-height: calc(100vh - 70px); 
-  box-sizing: border-box;
+  height: calc(100vh - 55px);
 }
-
 .header-title {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .main-container.with-sidebar {
-  width: 82%;
-  margin-left: 17%;
+  margin-left: 15%;
 }
+
 .img {
   width: 25px;
 }
@@ -30,6 +29,7 @@
 .d-flex{
   padding: 7px;
 }
+
 .main-header {
   display: flex;
   justify-content: space-between;

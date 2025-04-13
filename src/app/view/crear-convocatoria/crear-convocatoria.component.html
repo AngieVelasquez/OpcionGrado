@@ -40,46 +40,46 @@
           </div>
         </div>
       </div>
-      
-      
     </div>
-    
-
     <div class="mb-3">
       <label for="descripcion" class="form-label col-form-label">Descripción:<span class="aste">(*)</span></label>
-      <textarea class="form-control textdescription1" id="descripcion" rows="4" [(ngModel)]="convocatoria.descripcion" name="descripcion"  required #descripcion="ngModel"></textarea>
+      <div class="text" style="font-size: 12px; position: relative; display: flex; left: 138vh;">
+        {{ convocatoria.descripcion.length || 0 }}/250 caracteres
+      </div>
+      <textarea class="form-control textdescription1" id="descripcion" rows="4" [(ngModel)]="convocatoria.descripcion"
+       name="descripcion"  required maxlength="250" #descripcion="ngModel"></textarea>
+     
       <div *ngIf="descripcion.invalid && descripcion.touched" class="text-danger" style="font-size: 9px; font-family: 'Arial', sans-serif; margin-left: 37px; margin-top: 10px;">
         * Campo obligatorio.
       </div>
     </div>
 
-    <!-- SECCIÓN OBJETIVOS -->
+    <div class="button-container">
+      <button type="button" class="btn btn-success" (click)="openModal('CrearObjetivos')" 
+              data-bs-toggle="tooltip" title="Aquí podrá crear o visualizar objetivos">
+        Crear y Vincular Objetivos
+      </button>
+    </div>
+    
     <div class="container mt-1">
       <div class="d-flex align-items-center pb-1" [ngClass]="{ 'border-bottom': isCollapsed }">
         <button type="button" 
                 class="text mb-0 btn btn-link text-decoration-none p-0 border-0 bg-transparent text-start" 
                 (click)="toggleCollapse()">
-          Objetivos
+                Objetivos
         </button>
         <div class="flex-grow-1 border-bottom mx-2"></div>
-        <button type="button" class="btn btn-link text-decoration-none" (click)="toggleCollapse()">
+        <button *ngIf="objetivosSeleccionados.length > 0" type="button" class="btn btn-link text-decoration-none"
+           (click)="toggleCollapse()">
           <span [innerHTML]="isCollapsed ? '▼' : '▲'"></span>
         </button>
       </div>
 
-      <div *ngIf="!isCollapsed" class="border rounded mt-2 p-3 table-container expanded">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h3 class="cantidad">Cantidad Objetivos: {{ objetivosSeleccionados.length || 0 }}</h3>
-          <button type="button" class="btn btn-success" (click)="openModal('CrearObjetivos')" 
-                  data-bs-toggle="tooltip" title="Aquí podrá crear o visualizar objetivos">
-            Crear y Vincular Objetivos
-          </button>
-        </div>
-
-        <table class="table table-bordered">
+      <div *ngIf="objetivosSeleccionados.length > 0  && isCollapsed" class="border rounded mt-2 p-3 table-container expanded">
+        <table class="table table-bordered table-hover">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">Cantidad Objetivos: {{ objetivosSeleccionados.length || 0 }}</th>
               <th scope="col">Objetivos</th>
             </tr>
           </thead>
@@ -95,45 +95,46 @@
         </table>
       </div>
     </div>
-  <!-- SECCIÓN LÍNEAS -->
-  <div class="select">
-    <label class="lineas">Líneas de Profundización</label>
-    <button type="button" class="btn btn-success crear" (click)="openModal('modalCrearLinea')">
-      Crear Línea
-    </button>
-  </div>
+    <div class="fila-lineas-modal">
 
-  <!-- Combo con opciones desde la BD -->
-  <select class="form-select selectlineas" [(ngModel)]="selectedOption" (change)="updateBox()" [ngModelOptions]="{standalone: true}">
-    <option [ngValue]="null">Selección</option>
-        <option *ngFor="let linea of lineas" [ngValue]="linea">{{linea.nombre}}</option>
-  </select>
-  
-  <div class="custom-box cuadroLineas">
-    <span *ngFor="let option of selectedOptions; let i = index" class="selected-item">
-      {{ option.nombre }} 
-      <button type="button" class="close-btn" (click)="removeOption(i)">X</button>
-    </span>
-  </div>
-  
-    <!-- SECCIÓN MODALIDAD -->
-    <div class="select1">
-      <label class="col-sm-2 col-form-label">Modalidad: </label>
-      <select class="form-select selectmodalidad" [(ngModel)]="selectedModalidad" 
-              [ngModelOptions]="{standalone: true}" required>
-              <option [ngValue]="null">Selección</option>
-              <option *ngFor="let modalidad of Modalidades" [value]="modalidad.idModalidad">
-          {{ modalidad.nombre }}
-        </option>
-      </select>
+      <div class="bloque-lineas">
+        <div class="select">
+          <label class="lineas">Líneas de Profundización</label>
+          <button type="button" class="btn btn-success crear" data-bs-toggle="modal" data-bs-target="#modalCrearLinea" >Crear Línea</button>
+        </div>
+
+        <select class="form-select selectlineas" [(ngModel)]="selectedOption" (change)="updateBox()"
+                [ngModelOptions]="{standalone: true}">
+          <option [ngValue]="null">Selección</option>
+          <option *ngFor="let linea of lineas" [ngValue]="linea">{{linea.nombre}}</option>
+        </select>
+      </div>      
+      <div class="bloque-modalidad">
+        <div class="select1">
+          <label class="col-sm-2 col-form-label">Modalidad:</label>
+          <select class="form-select selectmodalidad" [(ngModel)]="selectedModalidad" 
+                  [ngModelOptions]="{standalone: true}" required>
+          <option [ngValue]="null">Selección</option>
+          <option *ngFor="let modalidad of Modalidades" [value]="modalidad.idModalidad">
+              {{ modalidad.nombre }}
+            </option>
+          </select>
+        </div>
+      </div>
     </div>
 
+    <div class="custom-box cuadroLineas">
+      <span *ngFor="let option of selectedOptions; let i = index" class="selected-item">
+        {{ option.nombre }} 
+        <button type="button" class="close-btn" (click)="removeOption(i)">X</button>
+      </span>
+    </div>
     <!-- SECCIÓN FECHAS -->
     <div class="container mt-5">
       <div class="d-flex align-items-center gap-5">
         <div class="input-group">
           <label for="fechaInicio" class="col-form-label">Fecha Inicio: <span class="aste">(*)</span></label>
-          <input type="date" class="form-control" id="fechaInicio"   [ngModel]="convocatoria.fechaInicio | date:'yyyy-MM-dd'"  (change)="calcularDuracion()" name="fechaInicio"  required #fechainicio="ngModel">
+          <input type="date" class="form-control" id="fechaInicio"   [ngModel]="convocatoria.fechaInicio | date:'yyyy-MM-dd'" disabled=""  (change)="calcularDuracion()" name="fechaInicio"  required #fechainicio="ngModel">
           <div *ngIf="fechainicio.invalid && fechainicio.touched" class="form-text text-danger">
             La fecha de inicio es obligatoria.
           </div>
@@ -141,10 +142,11 @@
 
         <div class="input-group">
           <label for="fechaFin" class="col-form-label">Fecha Fin: <span class="aste">(*)</span></label>
-          <input type="date" class="form-control" id="fechaFin" [(ngModel)]="convocatoria.fechaFin" name="fechaFin" (change)="calcularDuracion()" required
+          <input type="date" class="form-control" id="fechaFin" [(ngModel)]="convocatoria.fechaFin"
+           name="fechaFin" (change)="calcularDuracion()"     [min]="convocatoria.fechaInicio | date:'yyyy-MM-dd'"  required
           #fechafin="ngModel">
           <div *ngIf="fechafin.invalid && fechafin.touched" class="form-text text-danger">
-           La fecha de fin es obligatoria.
+            La fecha de fin es obligatoria y debe ser mayor a la fecha de inicio.
           </div>
         </div>
 
@@ -155,23 +157,96 @@
       </div>
     </div>
 
-    <!-- BOTONES FINALES -->
     <div class="botonesfinales">
       <button type="button" class="btn btn-success" (click)="openModal('modalConfirmarSalida')">
         Volver
       </button>
-      <button type="submit" class="btn btn-primary" (click)="openModal('modalConfirmarGuardado')" [disabled]="formConvocatoria.invalid">
+      <button type="button" class="btn btn-primary" (click)="openModal('modalConfirmarGuardado')" [disabled]="formConvocatoria.invalid">
         Guardar
       </button>
     </div>
-  </form>
+
+<div class="modal fade" id="modalConfirmarGuardado" tabindex="-1" aria-labelledby="modalConfirmarGuardadoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalConfirmarGuardadoLabel">Confirmar Guardado de Convocatoria</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p>¿Seguro que desea guardar la convocatoria? Revise los campos diligenciados:
+          ✅ Campo Diligenciado.
+          ❌ No Diligenciado.
+        </p>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Título:
+            <span>
+              {{ convocatoria.titulo ? '✅' : '❌' }}
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            URL Resolución:
+            <span>
+              {{ convocatoria.resolucion ? '✅' : '❌' }}
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            N° Resolución:
+            <span>
+              {{ convocatoria.numeroResolucion ? '✅' : '❌' }}
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Descripción:
+            <span>
+              {{ convocatoria.descripcion ? '✅' : '❌' }}
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Objetivos:
+            <span>
+              {{ objetivosSeleccionados.length > 0 ? '✅' : '❌'}}
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Lineas:
+            <span>
+              {{ selectedOptions.length > 0 ? '✅' : '❌' }}
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Modalidad:
+            <span>
+              {{ selectedModalidad > 0 ? '✅' : '❌' }}
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Fecha Fin:
+            <span>
+              {{ fechaFin ? '✅' : '❌' }}
+            </span>
+          </li>
+        </ul>
+      </div>
+      <!-- Pie del Modal -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary"data-bs-dismiss="modal">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
 
   <!-- MODAL CREAR OBJETIVOS -->
   <div class="modal fade" id="CrearObjetivos" tabindex="-1" aria-labelledby="modalCrearLineaLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="accordion accordion-flush" id="accordionFlushExample">
-          <div class="accordion-item">
+          <div class="accordion-item">            
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -180,6 +255,12 @@
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
+                <div *ngFor="let seccion of secciones">
+                  <div *ngIf="seccion.alerta" class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ seccion.alerta }}
+                    <button type="button" class="btn-close" (click)="seccion.alerta = ''"></button>
+                  </div>
+                </div>
                 <form [formGroup]="nuevoObjetivoForm" (ngSubmit)="crearObjetivo()">
                   <div class="mb-3">
                     <label for="nombreObjetivo" class="form-label">Nombre</label>
@@ -274,6 +355,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <div *ngFor="let seccion of secciones">
+            <div *ngIf="seccion.alerta" class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ seccion.alerta }}
+              <button type="button" class="btn-close" (click)="seccion.alerta = ''"></button>
+            </div>
+          </div>
+  
           <form [formGroup]="nuevaLineaForm" (ngSubmit)="crearLinea()">
             <div class="mb-3">
               <label for="nombreLinea" class="form-label">Nombre de la Línea</label>
@@ -313,5 +401,14 @@
       </div>
     </div>
   </div>
-
+  <div id="alertToast" class="toast align-items-center text-bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000" style="position: fixed; top: 20px; right: 20px; z-index: 1050;">
+    <div class="d-flex">
+      <i class="fa-solid fa-circle-exclamation fa-2xl" style="color: #ff0000;  margin-top: 30px;"></i>
+      <div class="toast-body">
+         La Fecha Fin debe ser mayor a la fecha de inicio.
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+    </div>
+  </div>
+  
 </div>

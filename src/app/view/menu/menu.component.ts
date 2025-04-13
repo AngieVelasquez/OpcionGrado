@@ -36,7 +36,7 @@ export class MenuComponent implements OnInit {
       this.isSidebarReduced = isReduced;
     });
     if (window.innerWidth < 768) {
-      this.isSidebarVisible = false;
+      this.isSidebarVisible = true;
       this.isMobile = true;
     }
     this.personaService.getUsuarios().subscribe((response) => {
@@ -46,8 +46,6 @@ export class MenuComponent implements OnInit {
       console.error('Error al obtener los usuarios:', error);
     });
   }
-
-  
   @HostListener('window:resize')
   onResize() {
     this.updateSidebarVisibility();
@@ -73,18 +71,27 @@ export class MenuComponent implements OnInit {
   
   isConvocatoriasOpen = false;
   isProyectosOpen = false; 
+  isGrupoOpen = false;
 
   toggleAccordion(accordion: string) {
     if (accordion === 'convocatorias') {
       this.isConvocatoriasOpen = !this.isConvocatoriasOpen;
       if (this.isConvocatoriasOpen) {
         this.isProyectosOpen = false;
+        this.isGrupoOpen = false;
       }
     } else if (accordion === 'proyectos') {
       this.isProyectosOpen = !this.isProyectosOpen;
       if (this.isProyectosOpen) {
         this.isConvocatoriasOpen = false;
+        this.isGrupoOpen = false;
       }
+      }else if (accordion === 'grupos') {
+        this.isGrupoOpen = !this.isGrupoOpen;
+        if (this.isGrupoOpen) {
+          this.isProyectosOpen = false;
+          this.isConvocatoriasOpen = false;
+        }
     }
   }
 
