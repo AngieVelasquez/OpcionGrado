@@ -39,7 +39,7 @@
   padding: 20px;
   background-color: #ffffff;
   height: calc(100vh - 60px);
-  overflow: auto;
+  overflow: none;
 }
 .principal-wrapper {
   font-family: 'Segoe UI', sans-serif;
