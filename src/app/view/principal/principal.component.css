@@ -2,24 +2,19 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  margin-left: 16.2%;
   margin-top: 3%;
   width: 84.5%;
   transition: margin-left 0.3s ease;
-  border: 1px solid rgb(193, 193, 193);
   min-height: calc(100vh - 60px);   
-
 }
 .main-container.with-sidebar {
   margin-left: 15%;
 }
-
 .main-container.without-sidebar {
   margin-left: 2.7%;
   width: calc(100% - 3%);
   max-width: 100%;
 }
-
 .main-header {
   background-color: #f7f5f5;
   color: #428BCA;  
@@ -172,10 +167,14 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
-
+@media screen and (max-height: 1100px) {
+  .main-container {
+    background: red;
+    min-height: calc(100vh - 230px);
+  }
+}
 @media screen and (max-width: 1024px) {
   .main-container {
-    margin-left: 10%;
     width: 90%;
   }
   .hero-content h1{
