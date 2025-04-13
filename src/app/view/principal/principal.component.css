@@ -177,6 +177,7 @@
   .main-container {
     margin-left: 10%;
     width: 90%;
+    height: calc(100vh - 60px);
   }
   .hero-content h1{
     font-size: 1.2rem;
