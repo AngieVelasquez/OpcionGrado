@@ -80,18 +80,7 @@ export class IndicadoresCoberturaComponent implements OnInit {
       paginaActual: 1,
       itemsPorPagina: 3
     },
-    {
-      key: 'objetivos',
-      titulo: 'Objetivos',
-      nombreSingular: 'objetivo',
-      items: [] as {nombre: string, descripcion: string }[],
-      nuevo: '',
-      alerta: '', 
-      descripcionNueva: '',
-      abierto: false,
-      paginaActual: 1,
-      itemsPorPagina: 3
-    }
+
   ];
   
   servicios = {
@@ -169,28 +158,7 @@ export class IndicadoresCoberturaComponent implements OnInit {
     if (!seccion) return;
   
     switch (seccionKey) {
-      case 'objetivos':
-        if (!seccion.nuevo || !seccion.descripcionNueva) return;
-        const nuevoObjetivo: Objetivo = {
-          idObjetivo: 0, 
-          nombre: seccion.nuevo,
-          descripcion: seccion.descripcionNueva,
-          estado: 1
-        };
-        
-        this.objetivoService.crearObjetivo(nuevoObjetivo).subscribe({
-          next: () => {
-            this.recargarSeccion(seccionKey);
-            seccion.nuevo = '';
-            seccion.descripcionNueva = '';
-            seccion.alerta = '✅ ¡Objetivo creado con éxito!';
-            setTimeout(() => seccion.alerta = '', 3000); 
 
-          },
-          error: err => console.error('Error al crear objetivo:', err)
-        });
-        break;
-  
       case 'lineas':
         if (!seccion.nuevo) return;
         const nuevaLinea: Linea = {

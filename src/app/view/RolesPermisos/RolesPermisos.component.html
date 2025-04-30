@@ -1,0 +1,209 @@
+<div class="main-container" [ngClass]="{'with-sidebar': !isSidebarReduced,'without-sidebar': isSidebarReduced}">
+    <div class="roles-container">
+        <!-- Encabezado -->
+        <div class="roles-header">
+          <div>
+            <h2>Roles y Permisos</h2>
+            <p class="subtitulo">Administra los roles y permisos de los usuarios en el sistema de extensión y proyección social</p>
+          </div>
+          <div class="botones-header">
+            <button class="btn-dark" (click)="abrirModalNuevoRol()">+ Nuevo Rol</button>
+         </div>
+        </div>
+      
+        <div class="roles-content">
+          <!-- Lista lateral -->
+          <div class="roles-sidebar">
+            <h4>Roles</h4>
+            <p class="roles-subtitulo">Selecciona un rol para gestionar sus permisos</p>
+            <input type="text" placeholder="Buscar roles..." class="input-busqueda" />
+      
+            <ul class="lista-roles">
+              <li class="rol-item selected">
+                <span class="dot red"></span>
+                <div class="rol-info">
+                  <strong>Administrador</strong>
+                  <small>Control total del sistema</small>
+                </div>
+                <span class="usuarios"><i class="fas fa-users"></i> 3</span>
+              </li>
+              <li class="rol-item">
+                <span class="dot blue"></span>
+                <div class="rol-info">
+                  <strong>Gestor de Proyectos</strong>
+                  <small>Gestión de proyectos y convocatorias</small>
+                </div>
+                <span class="usuarios"><i class="fas fa-users"></i> 8</span>
+              </li>
+              <li class="rol-item">
+                <span class="dot green"></span>
+                <div class="rol-info">
+                  <strong>Docente</strong>
+                  <small>Crear y gestionar proyectos propios</small>
+                </div>
+                <span class="usuarios"><i class="fas fa-users"></i> 24</span>
+              </li>
+              <li class="rol-item">
+                <span class="dot yellow"></span>
+                <div class="rol-info">
+                  <strong>Estudiante</strong>
+                  <small>Participar en proyectos</small>
+                </div>
+                <span class="usuarios"><i class="fas fa-users"></i> 156</span>
+              </li>
+            </ul>
+          </div>
+      
+          <!-- Detalle del rol -->
+          <div class="rol-detalle">
+            <div class="rol-detalle-header">
+              <div class="rol-detalle-titulo">
+                <span class="dot green grande"></span>
+                <h3>Docente</h3>
+              </div>
+              <div class="rol-detalle-acciones">
+                <button class="btn-outline" (click)="abrirModalEditarRol(rolSeleccionado)">
+                    <i class="fas fa-pen"></i> Editar
+                </button>
+                <button class="btn-red"><i class="fas fa-trash"></i> Eliminar</button>
+              </div>
+            </div>
+      
+            <p><strong>Descripción:</strong> Crear y gestionar proyectos propios</p>
+            <p><strong>Usuarios asignados:</strong> <i class="fas fa-users"></i> 24 usuarios</p>
+      
+            <!-- Permisos -->
+            <div class="categoria-permiso">
+              <div class="categoria-header">Dashboard <span class="contador">0/1</span></div>
+              <div class="grupo-permisos">
+                <span class="permiso inactivo"><i class="fas fa-times"></i> Ver Dashboard</span>
+              </div>
+            </div>
+      
+            <div class="categoria-permiso">
+              <div class="categoria-header">Reportes <span class="contador">0/2</span></div>
+              <div class="grupo-permisos">
+                <span class="permiso inactivo"><i class="fas fa-times"></i> Ver Reportes</span>
+                <span class="permiso inactivo"><i class="fas fa-times"></i> Exportar Reportes</span>
+              </div>
+            </div>
+      
+            <div class="categoria-permiso">
+              <div class="categoria-header">Proyectos <span class="contador">2/4</span></div>
+              <div class="grupo-permisos">
+                <span class="permiso activo"><i class="fas fa-check"></i> Ver Proyectos</span>
+                <span class="permiso activo"><i class="fas fa-check"></i> Crear Proyectos</span>
+                <span class="permiso inactivo"><i class="fas fa-times"></i> Editar Proyectos</span>
+                <span class="permiso inactivo"><i class="fas fa-times"></i> Eliminar Proyectos</span>
+              </div>
+            </div>
+      
+            <!-- ... más categorías aquí ... -->
+          </div>
+        </div>
+      </div>
+      <!-- Modal Crear Rol -->
+<div class="modal-overlay" *ngIf="mostrarModal">
+    <div class="modal-contenido">
+      <div class="modal-header">
+        <h3>Crear nuevo rol</h3>
+        <span class="modal-cerrar" (click)="cerrarModal()">×</span>
+      </div>
+      <p class="modal-sub">Define un nuevo rol y asigna sus permisos correspondientes.</p>
+  
+      <form (ngSubmit)="guardarRol()">
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]="nuevoRol.nombre" name="nombre" required>
+  
+        <label>Descripción</label>
+        <input type="text" [(ngModel)]="nuevoRol.descripcion" name="descripcion" required>
+  
+        <label>Color</label>
+        <div class="colores">
+          <div *ngFor="let color of colores"
+               class="color-opcion"
+               [ngClass]="{'seleccionado': nuevoRol.color === color}"
+               [ngStyle]="{'background-color': color}"
+               (click)="seleccionarColor(color)">
+          </div>
+        </div>
+  
+        <label class="switch-label">
+            <span>Todos los permisos</span>
+            <label class="switch">
+              <input type="checkbox" [(ngModel)]="nuevoRol.todosLosPermisos" name="todos">
+              <span class="slider"></span>
+            </label>
+          </label>
+          
+          <!-- Recorremos cada categoría de permisos -->
+          <div *ngFor="let categoria of permisosDisponibles" class="permiso-categoria">
+            <strong>{{ categoria.nombre }}</strong>
+            <div class="permiso-opciones">
+              <label *ngFor="let permiso of categoria.permisos" class="switch-label">
+                <span>{{ permiso.nombre }}</span>
+                <label class="switch">
+                  <input type="checkbox" [(ngModel)]="permiso.activo" name="{{ permiso.nombre }}">
+                  <span class="slider"></span>
+                </label>
+              </label>
+            </div>
+          </div>
+          
+        <div class="modal-footer">
+          <button type="button" class="btn-outline" (click)="cerrarModal()">Cancelar</button>
+          <button type="submit" class="btn-dark">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-overlay" *ngIf="mostrarModalEditar">
+    <div class="modal-contenido">
+      <div class="modal-header">
+        <h3>Editar rol</h3>
+        <span class="modal-cerrar" (click)="cerrarModalEditar()">×</span>
+      </div>
+      <p class="modal-sub">Modifica los detalles y permisos del rol.</p>
+  
+      <form (ngSubmit)="guardarCambiosRol()">
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]="rolEditable.nombre" name="nombre" required />
+  
+        <label>Descripción</label>
+        <input type="text" [(ngModel)]="rolEditable.descripcion" name="descripcion" required />
+  
+        <label>Color</label>
+        <div class="colores">
+          <div *ngFor="let color of colores"
+               class="color-opcion"
+               [ngClass]="{'seleccionado': rolEditable.color === color}"
+               [ngStyle]="{'background-color': color}"
+               (click)="rolEditable.color = color">
+          </div>
+        </div>
+  
+        <label>Permisos</label>
+        <div class="permisos-box">
+          <div *ngFor="let categoria of rolEditable.permisos">
+            <strong>{{ categoria.nombre }}</strong>
+            <div class="permiso-opciones">
+              <label *ngFor="let permiso of categoria.items" class="switch-label">
+                <span>{{ permiso.nombre }}</span>
+                <label class="switch">
+                  <input type="checkbox" [(ngModel)]="permiso.activo" name="{{categoria.nombre}}_{{permiso.nombre}}" />
+                  <span class="slider"></span>
+                </label>
+              </label>
+            </div>
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn-outline" (click)="cerrarModalEditar()">Cancelar</button>
+          <button type="submit" class="btn-dark">Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+</div>

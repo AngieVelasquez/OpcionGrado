@@ -15,6 +15,14 @@ export class GestionarProyectoComponent implements OnInit{
   listaObjetivos: { id: number; texto: string }[] = [];
   isCollapsed: boolean[] = [false, false, false, false];
 
+
+  actividades = [
+    {
+      nombre: 'Actividad 1',
+      semanas: new Array(16).fill(false) // 4 periodos × 4 semanas = 16
+    }
+  ];
+
   constructor(private menuService: MenuService) {}
   
   ngOnInit() {
@@ -38,7 +46,6 @@ export class GestionarProyectoComponent implements OnInit{
           <button class="btn btn-danger btn-sm eliminar-btn">Eliminar</button>
         `;
   
-        // Agrega evento al botón eliminar
         const botonEliminar = li.querySelector(".eliminar-btn") as HTMLButtonElement;
         botonEliminar.addEventListener("click", () => this.eliminarObjetivo(li));
   
@@ -77,4 +84,17 @@ export class GestionarProyectoComponent implements OnInit{
   Salir() {
     this.router.navigate(['/principal']);
   }
+  agregarActividad() {
+    this.actividades.push({
+      nombre: `Actividad ${this.actividades.length + 1}`,
+      semanas: new Array(16).fill(false)
+    });
+  }
+  toggleSemanasHasta(actividad: any, index: number) {
+    const activar = !actividad.semanas[index]; 
+    for (let i = 0; i < actividad.semanas.length; i++) {
+      actividad.semanas[i] = i <= index ? activar : false;
+    }
+  }
+  
 }

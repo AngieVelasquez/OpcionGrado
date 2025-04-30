@@ -1,0 +1,80 @@
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+    padding: 20px;
+  }
+  
+  .not-found-content {
+    text-align: center;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .error-code {
+    font-size: 6rem;
+    color: #ff6b6b;
+    margin-bottom: 10px;
+  }
+  
+  .error-message {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .error-description {
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  .return-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .return-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .not-found-content {
+      padding: 20px;
+      width: 90%;
+    }
+  
+    .error-code {
+      font-size: 4rem;
+    }
+  
+    .error-message {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .error-code {
+      font-size: 3rem;
+    }
+  
+    .error-message {
+      font-size: 1.2rem;
+    }
+  
+    .return-button {
+      padding: 8px 16px;
+    }
+  }
+  

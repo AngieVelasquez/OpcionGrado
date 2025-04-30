@@ -1,8 +1,17 @@
 <div class="main-container" [ngClass]="{ 'with-sidebar': !isSidebarReduced, 'without-sidebar': isSidebarReduced }">
   <header class="main-header">
-    <img src="https://cdn-icons-png.freepik.com/256/943/943040.png?semt=ais_hybrid" class="img" alt=""/>
-    Crear Convocatoria
-    <button class="btn btn-danger close-btn" (click)="Salir()">X</button>
+    <div class="header-convocatorias">
+      <div class="header-left">
+        <div class="icono-convocatoria">
+          <i class="fas fa-calendar-plus"></i>
+        </div>
+        <div>
+          <div class="titulo-convocatorias">Crear Convocatoria</div>
+        </div>
+      </div>
+    
+      <button class="cerrar-btn" (click)="Salir()">✕</button>
+    </div>
   </header>
   
   <form #formConvocatoria="ngForm" (submit)="crearConvocatoria(formConvocatoria)" novalidate>

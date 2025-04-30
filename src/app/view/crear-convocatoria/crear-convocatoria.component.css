@@ -2,7 +2,6 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  margin-left: 16.2%;
   margin-top: 55px; 
   width: calc(100% - 16.2%);
   min-height: calc(100vh - 60px);
@@ -13,8 +12,8 @@
 }
 
 .main-container.with-sidebar {
-  width: calc(100% - 16%);
-  margin-left: 15%;
+  width: calc(100% - 17%);
+  margin-left: 16.2%;
 }
 
 .img {
@@ -22,7 +21,7 @@
 }
 
 .main-container.without-sidebar {
-  margin-left: 2.7%;
+  margin-left: 3%;
   width: calc(100% - 3%);
   max-width: 100%;
 }
@@ -30,30 +29,6 @@
 .d-flex{
   padding: 7px;
 }
-.main-header {
-  background-color: #f7f5f5;
-  color: #044BFF;
-  padding: 7px;
-  text-align: left;
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  font-size: 15px;
-  position: relative;
-}
-
-.close-btn {
-  position: absolute;
-  top: 2px;
-  right: 5px;
-  width: 20px;
-  height: 20px;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-}
-
 .aste {
   color: red;
   font-size: 10px;
@@ -313,18 +288,6 @@ textarea, .crearobjetivotextarea {
   width: auto;
 }
 
-.close-btn {
-  margin-left: 5px;
-  border: none;
-  background: none;
-  color: red;
-  font-weight: bold;
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  padding: 5px;
-  transform: translateY(-50%);
-}
 .btncrear{
   font-size: 12px;
   font-family: Arial, Helvetica, sans-serif;
@@ -349,6 +312,67 @@ textarea, .crearobjetivotextarea {
   text-align: right;
   margin: 0 20px;
 }
+.header-convocatorias {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f6f9;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icono-convocatoria {
+  background-color: #eaf1fc;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #044BFF;
+}
+
+.titulo-convocatorias {
+  font-weight: bold;
+  color: #044BFF;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+.subtitulo-convocatorias {
+  font-size: 12px;
+  color: #555;
+  font-family: Arial, sans-serif;
+}
+
+.cerrar-btn {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  width: 26px;
+  height: 26px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.cerrar-btn:hover {
+  background-color: #d32f2f;
+}
+
 
 @media screen and (max-width: 1318px) {
   .main-container {

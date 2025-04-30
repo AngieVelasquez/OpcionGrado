@@ -1,20 +1,32 @@
 <div class="main-container" [ngClass]="{'with-sidebar': !isSidebarReduced, 'without-sidebar': isSidebarReduced}">
   <header class="main-header">
-    <img src="https://hospitalyolombo.gov.co/wp-content/uploads/2021/02/logo-convocatoria.png" class="img" alt="Logo Convocatorias"> 
-    Convocatorias 
-    <button class="btn btn-danger close-btn" (click)="Salir()">X</button>
-    <div class="general">General</div>
+    <div class="header-convocatorias">
+      <div class="header-left">
+        <div class="icono-convocatoria">
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <div>
+          <div class="titulo-convocatorias">Convocatorias</div>
+          <div class="subtitulo-convocatorias">General</div>
+        </div>
+      </div>
+    
+      <button class="cerrar-btn" (click)="Salir()">✕</button>
+    </div>
+    
   </header>
 
   <div class="filter-container">
     <button class="filter-button" (click)="toggleFiltro()">
-      Filtrar <i class="fas fa-filter"></i> 
+      <i class="fas fa-filter"></i> Filtrar
     </button>
+  
     <div class="filter-options" *ngIf="mostrarOpciones">
       <button (click)="seleccionarFiltro('activos')">Activos</button>
       <button (click)="seleccionarFiltro('todos')">Todos</button>
     </div>
   </div>
+  
 
   <div *ngFor="let convocatoria of convocatoriasFiltradas" class="card">
     <div class="circle-container">

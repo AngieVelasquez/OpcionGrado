@@ -92,12 +92,12 @@ body {
   width: 16%;
   min-width: 150px;
   max-width: 250px;
-  height: 100vh;
-  overflow-y: auto;
+  height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
   background-color: white;
   border: 1px solid rgb(214, 214, 214);
   box-sizing: border-box;
-  z-index: 1;
 }
 
 .sidebar-reduced.sidebar-visible {
@@ -153,34 +153,34 @@ body {
   text-align: center;
   font-size: 13px;
   background-color: #428BCA;
-  top: 6%;
-  position: relative;
-  width: calc(100% + 40px); 
+  width: calc(100% + 20px);
   height: 35px;
-  display: fixed;
+  display: flex;
   align-items: center;
-  padding: 10px;
-  gap: 20px;
+  justify-content: center;
   font-family: Arial, sans-serif;
+  position: relative;
   left: -20px;
+  margin-top:10px; /* Añadido */
+  padding: 8px; /* Ajustado */
+  z-index: 0;
+  gap: 10px;
 }
 
 .fa-chevron-up {
   transform: rotate(270deg);
   transition: transform 0.3s ease;
 }
-
 .btn-group-vertical {
   display: flex;
   flex-direction: column;
   width: 100%;
   max-height: 250px;
-  position: relative;
-  top: 10%;
   overflow: auto;
   align-items: stretch;
-  
+  top: 15px; 
 }
+
 .btn-group-vertical .btn {
   flex-grow: 0;
   width: 80%;
@@ -213,17 +213,15 @@ body {
   flex-direction: column;
   width: 100%;
 }
-
 .menu {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  max-height: 100vh;  
+  max-height: 100vh;
   width: 100%;
-  padding: 20px;
+  padding: 0px 20px 20px 20px; 
   overflow-y: auto;
-  margin: 0 auto;
-
+  margin-top: 0px; 
 }
 .acordeon-button {
   background-color: #d9d9d9;
@@ -235,6 +233,7 @@ body {
   border-radius: 8px;;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-size: 13px;
   margin-bottom: 8px;
 }
 .acordeon-button:hover {
@@ -250,6 +249,8 @@ body {
   border-radius: 0 0 8px 8px;
   margin-top: -8px;
   margin-bottom: 10px;
+  font-size: 13px;
+
   font-family: Arial, sans-serif;
 }
 
@@ -322,6 +323,8 @@ body {
   text-align: left;
   border-radius: 8px;
   cursor: pointer;
+  font-size: 13px;
+  font-family: Arial, sans-serif;
   transition: background-color 0.3s ease;
   margin-bottom: 8px;
 }
@@ -378,9 +381,10 @@ body {
   transform-origin: top left;  
   white-space: nowrap;
   text-align: left;  
-  font-size: 16px;
+  font-size: 14px;
   font-family: Arial, sans-serif;
-  margin-top: -360px;
+  margin-top: -340px;
+
 }
 .icono {
   font-size: 10px;
@@ -434,21 +438,16 @@ body {
 }
 
 #informacionUniversidad {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;     
-  height: 11%;       
-  font-size: 12PX;
+  margin-top: auto; 
   background-color: #428BCA;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 10px;
   text-align: center;
-  font-family: Arial, sans-serif;
+  font-size: 12px;
   color: white;
-  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
+
+
 
 #informacionUniversidad a {
   color: black;
@@ -476,6 +475,60 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 4;
 }
+.informacion-personal-card {
+  margin: 0px auto; 
+  background-color: #ffffff;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 8px;
+  width: 220px;
+  align-items: center;
+  max-width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.informacion-personal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.foto-usuario img {
+  width: 100px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #fefefe;
+  margin-bottom: 15px;
+}
+
+.informacion-personal-card h3 {
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #333333;
+}
+
+.info-item {
+  display: flex;
+  margin-bottom: 5px;
+  gap: 10px;
+  padding: 0 5px;
+  font-size: 10px;
+  font-family: Arial,  sans-serif;
+}
+
+.info-label {
+  font-weight: bold;
+  color: #555555;
+  font-size: 12px;
+  font-family: Arial,  sans-serif;
+}
+
+.info-value {
+  color: #777777;
+}
+
 @media screen and (max-width: 1318px) {
  .barraRecargarpagina{
   width: 100%;
@@ -483,11 +536,7 @@ body {
  .sidebar h2{
   font-size: 10px;
  }
- .InformacionPersonal {
-  margin: 8px; 
-  padding: 3px;
-  width: 90%;
- }
+ 
  .menu{
   font-size: 12px;
   height:40%;
@@ -503,7 +552,6 @@ body {
  }
 }
 @media screen and (max-width: 768px) {
-  /* Ajustes generales para las barras superiores */
   .barratitulo, 
   .barraRecargarpagina {
     padding-left: 10px;
@@ -564,11 +612,16 @@ body {
   }
   
   .barraReducida h3 {
-    margin: 0;
-    font-size: 10px;
     transform: rotate(270deg);
-    transform-origin: top left;
+    transform-origin: left top;
     white-space: nowrap;
+    font-size: 12px;
+    line-height: 1.2;
+    margin: 0;
+    width: max-content;
+    padding: 0 5px;
+    font-family: Arial, sans-serif;
+    text-align: left;
   }
   
   .content {

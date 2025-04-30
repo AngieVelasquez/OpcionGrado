@@ -42,22 +42,8 @@
                   (click)="cambiarPagina(seccion.key, seccion.paginaActual + 1)">
             »
           </button>
-        </div>    
-
-        <div class="agregar">
-          <input [(ngModel)]="seccion.nuevo" [placeholder]="'Agregar nuevo ' + seccion.nombreSingular" />
-        
-          <input *ngIf="seccion.key === 'objetivos'"
-                 [(ngModel)]="seccion.descripcionNueva"
-                 placeholder="Descripción del objetivo" />
-        
-          <button (click)="agregar(seccion.key)">Guardar</button>
-        </div>
-        
-
+        </div>       
       </div>
     </div>
   </div>
-
-  
 </div>

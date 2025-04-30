@@ -13,6 +13,9 @@ import { GestionarProyectoComponent } from './view/gestionar-proyecto/gestionar-
 import { InscripcionesGruposComponent } from './view/inscripciones-grupos/inscripciones-grupos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IndicadoresCoberturaComponent } from './view/IndicadoresCobertura/IndicadoresCobertura.component';
+import { RolesPermisosComponent } from './view/RolesPermisos/RolesPermisos.component';
+import { ConfiguracionComponent } from './view/Configuracion/Configuracion.component';
+import { VerGrupoComponent } from './view/VerGrupo/VerGrupo.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { IndicadoresCoberturaComponent } from './view/IndicadoresCobertura/Indic
     VerConvocatoriaComponent,
     GestionarProyectoComponent,
     InscripcionesGruposComponent, 
-    IndicadoresCoberturaComponent
+    IndicadoresCoberturaComponent,
+    ConfiguracionComponent,
+    VerGrupoComponent,
+    RolesPermisosComponent
   ],
   imports: [
     BrowserModule,

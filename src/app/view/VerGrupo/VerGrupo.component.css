@@ -1,0 +1,152 @@
+.main-container {
+    margin-left: 0;
+    margin-top: 30px;
+    padding: 20px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .main-container.with-sidebar {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    max-width: none;
+  }
+  
+  
+  .main-container.without-sidebar {
+    margin-left: 2.7%;
+    width: calc(100% - 3%);
+    max-width: 100%;
+  }
+  .img{
+    width: 25px;
+  }
+  .duracion-restante{
+    text-align: center; 
+    font-size: 12px; 
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100px; 
+    border-radius: 5px;
+    background-color: rgb(255, 235, 124);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 46%;
+  }
+  .main-header {
+    position: relative;
+    background-color: #f7f5f5;
+    color: #044BFF;
+    padding: 7px;
+    text-align: left;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 2px; 
+    right: 5px; 
+    width: 20px; 
+    height: 20px; 
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+.titulo-grupos {
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+  color: #0d47a1;
+  margin-bottom: 10px;
+}
+
+.titulo-linea {
+  width: 80px;
+  height: 3px;
+  background-color: #0d47a1;
+  margin: 0 auto 30px auto;
+  border: none;
+  border-radius: 5px;
+}
+
+.grupos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 0;       
+    margin: 0;             
+    box-sizing: border-box;
+  }
+  
+.grupo-card {
+    width: 100%;        
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+    border: 1px solid #3b96f1;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(46, 46, 46, 0.05);
+    box-sizing: border-box;
+  }
+  
+.grupo-icono {
+  width: 50px;
+  height: 50px;
+  background-color: #e3f2fd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #0d47a1;
+  margin-right: 20px;
+}
+
+.grupo-info {
+  flex: 1;
+  font-size: 12px;
+}
+
+.nombre-grupo {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #1a237e;
+}
+
+.detalle-grupo {
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 3px;
+}
+
+.paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 10px;
+}
+
+.paginacion button {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.paginacion span {
+  font-size: 14px;
+  color: #333;
+}

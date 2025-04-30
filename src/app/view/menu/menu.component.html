@@ -24,11 +24,32 @@
     Panel de Información 
     <i class="fa-solid fa-chevron-up" (click)="toggleSidebar($event)"></i>
   </h2>
-  <div class="InformacionPersonal">
-    <span class="bordeTexto">Información</span>
-    <label class="nombre-completo">{{ nombreUsuario }}</label>
+  <div class="informacion-personal-card" *ngIf="nombreUsuario">
+    <h3>Información Personal</h3>
+
+    <div class="foto-usuario">
+      <img src="assets/Imagenes/foto.jpeg" alt="Foto del Usuario" />
+    </div>
+  
+  
+    <div class="info-item">
+      <span class="info-label">Nombre:</span>
+      <span class="info-value">{{ nombreUsuario }}</span>
+    </div>
+  
+    <div class="info-item">
+      <span class="info-label">Teléfono:</span>
+      <span class="info-value">{{ usuarioTelefono }}</span>
+    </div>
+  
+    <div class="info-item">
+      <span class="info-label">Documento:</span>
+      <span class="info-value">{{ usuarioDocumento }}</span>
+    </div>
   </div>
-  <h1><i class="fa-solid fa-bars"></i> Menú Principal</h1>
+
+    <h1><i class="fa-solid fa-bars"></i> Menú Principal </h1>
+    
   <div class="btn-group-vertical menu" role="group" aria-label="Vertical button group">
     <!-- Botón estilo acordeón -->
     <button class="acordeon-button" (click)="toggleAccordion('convocatorias')">
@@ -46,7 +67,7 @@
     </button>
     <div *ngIf="isGrupoOpen" class="acordeon-contenido">
       <a routerLink="/inscripcion-grupo">Inscribir Grupo</a>
-      <a routerLink="/">Mis Grupos</a>
+      <a routerLink="/VerGrupo">Ver Grupos</a>
     </div>
 
     <button class="acordeon-button" (click)="toggleAccordion('proyectos')">
@@ -64,7 +85,9 @@
     <button class="boton-simple" routerLink="/">
       Reportes
     </button>
-    
+    <button class="boton-simple" routerLink="/Configuracion">
+      Configuracion
+    </button>
   </div>
   <div id="informacionUniversidad">
     <span>©  {{ currentYear }} <a href="https://www.uniamazonia.edu.co/inicgit initio/index.php/es/">Universidad de la Amazonia</a> - Todos los derechos reservados.</span>

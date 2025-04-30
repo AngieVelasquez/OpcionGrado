@@ -1,5 +1,9 @@
 export interface Usuario {
-    nombreCompleto: string;
-    correo: string | null;
-  }
-  
+  mensaje: string;
+  usuario: {
+    nombre: string;
+    correo: string;
+    documento: string;
+    telefono: string;
+  };
+}

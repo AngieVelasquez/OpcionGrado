@@ -13,8 +13,8 @@
 }
 
 .main-container.with-sidebar {
-  width: calc(100% - 16%);
-  margin-left: 15%;
+  width: calc(100% - 17%);
+  margin-left: 16.2%;
 }
 .main-container.without-sidebar {
   margin-left: 2.7%;
@@ -25,29 +25,67 @@
   width: 50px;
   padding: 0;
 }
-
-.main-header {
-  background-color: #f7f5f5;
-  color: #044BFF;
-  padding: 7px;
-  text-align: left;
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  font-size: 15px;
-  position: relative;
+.header-convocatorias {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f6f9;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 20px;
 }
-.close-btn {
-  position: absolute;
-  top: 2px; 
-  right: 5px; 
-  width: 20px; 
-  height: 20px; 
-  font-size: 12px;
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icono-convocatoria {
+  background-color: #eaf1fc;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  font-size: 14px;
+  color: #044BFF;
 }
+
+.titulo-convocatorias {
+  font-weight: bold;
+  color: #044BFF;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+.subtitulo-convocatorias {
+  font-size: 12px;
+  color: #555;
+  font-family: Arial, sans-serif;
+}
+
+.cerrar-btn {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  width: 26px;
+  height: 26px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.cerrar-btn:hover {
+  background-color: #d32f2f;
+}
+
 .general{
   display: flex;
   margin-top: 5px;
@@ -149,28 +187,35 @@
 #inactiva{
   background-color: #E47113;
 }
-
-.filter-button{
-  background-color: white;
-  border: 1px solid rgb(196, 193, 193) ;
-  border-radius: 5px;
-  margin-top: 6px;
-  padding: 5px;
-  font-size: 13px;
+.filter-container {
+  display: flex;
+  justify-content: flex-end;
   position: relative;
-  left: 92%;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 5px 10px;
 }
-.filter-button:hover{
-  background-color: #7399f8;
+
+.filter-button {
+  background-color: #fff;
+  border: 1px solid #c4c4c4;
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #044BFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.filter-button:hover {
+  background-color: #044BFF;
   color: white;
 }
 .filter-options{
   width: 120px;
   background-color: rgb(255, 255, 255);
   border-radius: 5px;
-  margin-top: 6px;
   padding: 5px;
   font-size: 12px;
   position: relative;
@@ -182,17 +227,47 @@
   gap: 5px; 
 
 }
-
-.filter-options button{
+.filter-options {
+  position: absolute;
+  top: 45px;
+  right: 0;
   background-color: white;
-  gap: 100px;
-  border: 1px solid rgb(196, 193, 193) ;
-  border-radius: 5px;
-  padding: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 120px;
+  animation: fadeIn 0.2s ease;
 }
-.filter-options button:hover{
-  background-color: #7399f8;
-  color: white;
+
+.filter-options button {
+  background-color: transparent;
+  border: none;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #333;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.filter-options button:hover {
+  background-color: #f0f4ff;
+  color: #044BFF;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

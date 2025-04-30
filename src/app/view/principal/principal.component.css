@@ -167,12 +167,6 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
-@media screen and (max-height: 1100px) {
-  .main-container {
-    background: red;
-    min-height: calc(100vh - 230px);
-  }
-}
 @media screen and (max-width: 1024px) {
   .main-container {
     width: 90%;

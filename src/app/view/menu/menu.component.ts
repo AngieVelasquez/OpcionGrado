@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MenuService } from 'src/app/service/menu.service';
-import { LoginRequest } from 'src/app/model/Auth-response.model';
-import { PersonaService } from 'src/app/service/Usuario.service';
+import { LoginRequest } from 'src/app/model/LoginRequest.model';
+import { UsuarioService } from 'src/app/service/Usuario.service';
 import { Usuario } from 'src/app/model/Usuario.model';
 
 @Component({
@@ -19,8 +19,30 @@ export class MenuComponent implements OnInit {
   private readonly MOBILE_BREAKPOINT = 768; 
   router: any;
   nombreUsuario: string = '';
+  usuarioCorreo: string = '';
+  usuarioTelefono: string = '';
+  usuarioDocumento: string = '';
+  
+  constructor(private menuService: MenuService, private usuarioService: UsuarioService) {} 
+  login(){
+    const credentials: LoginRequest = { 
+      correo: 'an.velasquez@udla.edu.co',
+      contraseña: '12334554'
+    };
+    this.usuarioService.loginUsuario(credentials).subscribe({
+      next: (response) => {
+        console.log('Usuario logueado:', response);
 
-  constructor(private menuService: MenuService, private personaService: PersonaService) {} 
+        this.nombreUsuario = response.usuario.nombre;
+        this.usuarioTelefono = response.usuario.telefono;
+        this.usuarioDocumento = response.usuario.documento;
+        
+      },
+      error: (error) => {
+        console.error('Error al iniciar sesión:', error);
+      }
+    })
+  }
   ngAfterViewInit(): void {
     setTimeout(() => {
       if (this.dropdownButton) {
@@ -30,7 +52,6 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.updateSidebarVisibility();
     this.menuService.isSidebarReduced$.subscribe((isReduced) => {
       this.isSidebarReduced = isReduced;
@@ -39,12 +60,7 @@ export class MenuComponent implements OnInit {
       this.isSidebarVisible = true;
       this.isMobile = true;
     }
-    this.personaService.getUsuarios().subscribe((response) => {
-      this.nombreUsuario = response.nombreCompleto;
-      console.log(this.nombreUsuario); 
-    }, (error) => {
-      console.error('Error al obtener los usuarios:', error);
-    });
+      this.login(); 
   }
   @HostListener('window:resize')
   onResize() {

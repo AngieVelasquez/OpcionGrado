@@ -2,20 +2,18 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  margin-left: 16.2%;
-  margin-top: 4%; 
-  width: 82.9%;
+  margin-top: 55px; 
+  width: calc(100% - 16.2%);
+  min-height: calc(100vh - 60px);
   transition: margin-left 0.3s ease;
   border: 1px solid rgb(193, 193, 193);
-}
-.main-container.with-sidebar {
-  margin-left: 16.2%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
-.main-container.without-sidebar {
-  margin-left: 2.7%;
-  width: calc(100% - 3%);
-  max-width: 100%;
+.main-container.with-sidebar {
+  width: calc(100% - 17%);
+  margin-left: 16.2%;
 }
 .img{
   width: 25px;
